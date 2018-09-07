@@ -1,0 +1,1 @@
+D:\WPF\GitProject\Version 0.1\WeibullSolver_WPF\bin\Debug\WeibullSolver_WPF.exe.config

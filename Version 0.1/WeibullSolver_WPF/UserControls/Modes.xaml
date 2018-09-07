@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="WeibullSolver_WPF.UserControls.Modes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeibullSolver_WPF.UserControls"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <Style x:Key="AlternateRowStyle"
+               TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background"
+                    Value="{DynamicResource TransparantColor}" />
+
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="Validation.ErrorTemplate"
+                    Value="{x:Null}" />
+            <Setter Property="ValidationErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBlock Margin="2,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource DGRowForeground}"
+                                   Text="!" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridRow}">
+                        <Border x:Name="DGR_Border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"
+                                Background="{DynamicResource DGRowBackgroundAlternate1}">
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Normal_AlternatingRow">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
+                                                                           Storyboard.TargetName="DGR_Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{DynamicResource DGRowBackgroundAlternate2}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal_Selected">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
+                                                                           Storyboard.TargetName="DGR_Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{DynamicResource DGSelectedRow}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
+                                                                           Storyboard.TargetName="DGR_Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{DynamicResource GradientBackgroundColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </SelectiveScrollingGrid.ColumnDefinitions>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <DataGridCellsPresenter Grid.Column="1"
+                                                        ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <DataGridDetailsPresenter Grid.Row="1"
+                                                          Grid.Column="1"
+                                                          SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen,
+							                                                                                             ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical},
+							                                                                                             Converter={x:Static DataGrid.RowDetailsScrollingConverter},
+							                                                                                             RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                          Visibility="{TemplateBinding DetailsVisibility}" />
+                                <DataGridRowHeader Grid.RowSpan="2"
+                                                   SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                   Visibility="{Binding HeadersVisibility,
+							                                            ConverterParameter={x:Static DataGridHeadersVisibility.Row},
+							                                            Converter={x:Static DataGrid.HeadersVisibilityConverter},
+							                                            RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                            </SelectiveScrollingGrid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Path Data="M165,0 C74.019,0 0,74.02 0,165.001 0,255.982 74.019,330 165,330 255.981,330 330,255.982 330,165.001 330,74.02 255.981,0 165,0 z M165,300 C90.56,300 30,239.44 30,165.001 30,90.562 90.56,30 165,30 239.44,30 300,90.562 300,165.001 300,239.44 239.439,300 165,300 z M164.998,70 C153.972,70 145.002,78.976 145.002,90.009 145.002,101.032 153.972,110 164.998,110 176.024,110 184.994,101.032 184.994,90.009 184.994,78.976 176.024,70 164.998,70 z M165,140 C156.716,140 150,146.716 150,155 L150,245 C150,253.284 156.716,260 165,260 173.284,260 180,253.284 180,245 L180,155 C180,146.716 173.284,140 165,140 z"
+                                  Fill="#FFFFFF"
+                                  Stretch="Uniform" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+        <Grid x:Name="grid"
+              Background="#282828">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="Modes"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="0,0,0,5" />
+
+            <ScrollViewer Grid.Row="1"
+                          Grid.ColumnSpan="2"
+                          VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="dgModes">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Component"
+                                            Width="*"
+                                            Binding="{Binding Component}" />
+
+                        <DataGridTextColumn Header="What?"
+                                            Width="*"
+                                            Binding="{Binding What}" />
+
+                        <DataGridTextColumn Header="Due To?"
+                                            Width="*"
+                                            Binding="{Binding Due_To}" />
+                        <DataGridTemplateColumn Width="*">
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Info"
+                                               Foreground="White"
+                                               VerticalAlignment="Center"
+                                               Margin="3,0,0,0" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Center"
+                                          Height="20"
+                                          Margin="10,0,0,0">
+                                        <Button VerticalAlignment="Center" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</UserControl>

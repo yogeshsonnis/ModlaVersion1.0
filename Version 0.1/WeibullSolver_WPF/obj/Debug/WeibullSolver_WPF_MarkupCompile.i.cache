@@ -1,0 +1,20 @@
+﻿WeibullSolver_WPF
+
+
+winexe
+C#
+.cs
+D:\WPF\GitProject\Version 0.1\WeibullSolver_WPF\obj\Debug\
+WeibullSolver_WPF
+none
+false
+DEBUG;TRACE
+D:\WPF\GitProject\Version 0.1\WeibullSolver_WPF\App.xaml
+161690982295
+
+18-231009862
+16722256245
+MainWindow.xaml;ResourceDictionary\CheckBoxResources.xaml;ResourceDictionary\ColorResources.xaml;ResourceDictionary\DataGridResources.xaml;ResourceDictionary\FontStyleResource.xaml;ResourceDictionary\GreenDataGridStyle.xaml;ResourceDictionary\OrangeDataGridStyle.xaml;ResourceDictionary\RadioButtonStyle.xaml;ResourceDictionary\ScrollViewerStyleResource.xaml;Themes\Generic.xaml;UserControls\AssetsInformation.xaml;UserControls\Decisions.xaml;UserControls\ModelSettings.xaml;UserControls\Modes.xaml;UserControls\PrimaryTasks.xaml;UserControls\Results.xaml;
+
+True
+

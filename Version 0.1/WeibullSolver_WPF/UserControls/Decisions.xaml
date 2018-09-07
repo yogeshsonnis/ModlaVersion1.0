@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="WeibullSolver_WPF.UserControls.Decisions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeibullSolver_WPF.UserControls"
+             mc:Ignorable="d" >
+    <DockPanel>
+        <Grid x:Name="grid"
+              Background="{DynamicResource MaingridBaground }">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="Decisions"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="0,0,0,5" />
+
+            <ScrollViewer Grid.Row="1"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Horizontal">
+                    <DataGrid x:Name="dgDecisions"
+                              Width="300"
+                              Style="{DynamicResource GreenMainDataGridStyle}"
+                              RowStyle="{DynamicResource GreenAlternateRowStyleForAnotherDG}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Has Fans?"
+                                                Width="*"
+                                                Binding="{Binding Has_Fans,Mode=TwoWay}" />
+
+                            <DataGridTextColumn Header="True"
+                                                Width="*"
+                                                Binding="{Binding True,Mode=TwoWay}" />
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <DataGrid x:Name="dgDecisions2"
+                              Margin="50,0,0,0"
+                              Width="300"
+                              Style="{DynamicResource OrangeMainDataGridStyle}"
+                              RowStyle="{DynamicResource OrangeAlternateRowStyleForAnotherDG}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Requires Lube?"
+                                                Width="*"
+                                                Binding="{Binding Requires_Lube,Mode=TwoWay}" />
+
+                            <DataGridTextColumn Header="True"
+                                                Width="*"
+                                                Binding="{Binding True,Mode=TwoWay}" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="dgDecisions3"
+                              Margin="50,0,0,0"
+                              Width="300"
+                              Style="{DynamicResource GreenMainDataGridStyle}"
+                              RowStyle="{DynamicResource GreenAlternateRowStyleForAnotherDG}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Statutory"
+                                                Width="*"
+                                                Binding="{Binding Statutory_,Mode=TwoWay}" />
+
+                            <DataGridTextColumn Header="True"
+                                                Width="*"
+                                                Binding="{Binding True,Mode=TwoWay}" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="dgDecisions4"
+                              Margin="50,0,0,0"
+                              Width="300"
+                              Style="{DynamicResource GreenMainDataGridStyle}"
+                              RowStyle="{DynamicResource GreenAlternateRowStyleForAnotherDG}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="People Explosure?"
+                                                Width="*"
+                                                Binding="{Binding People_Explosure,Mode=TwoWay}" />
+
+                            <DataGridTextColumn Header="0.3"
+                                                Width="*"
+                                                Binding="{Binding People_Explosure,Mode=TwoWay}" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</UserControl>
