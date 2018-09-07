@@ -29,7 +29,7 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="Height"
-                Value="40" />
+                Value="35" />
         <Setter Property="SeparatorBrush"
                 Value="{DynamicResource DGSeparatorBrush}" />
         <Setter Property="Foreground"

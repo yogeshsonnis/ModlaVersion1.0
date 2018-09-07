@@ -49,14 +49,14 @@ namespace WeibullSolver_WPF.UserControls
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            borderPopup.Visibility = Visibility.Collapsed;
+            borderPopup.IsOpen = false;
             var v = this.DataContext as ModelSettingsVM;
             v.SettingDetails = new WeibullSolverLibrary.Common_Code.ProjectParameters();
         }
 
         private void btnADD_Click(object sender, RoutedEventArgs e)
         {
-            borderPopup.Visibility = Visibility.Visible;
+            borderPopup.IsOpen = true;
         }
     }
 }

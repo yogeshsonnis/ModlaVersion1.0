@@ -105,7 +105,7 @@
         <Grid x:Name="grid"
               Background="{DynamicResource MaingridBaground }">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
+                <RowDefinition Height="35" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -123,10 +123,10 @@
                     Content="Add Setting"
                     Margin="0,0,0,5" 
                     Click="btnADD_Click"/>
-            <ScrollViewer Grid.Row="1"
-                          Grid.ColumnSpan="2"
-                          VerticalScrollBarVisibility="Auto">
+         
                 <DataGrid x:Name="dgModelSettings"
+                          Grid.Row="1"
+                          Grid.ColumnSpan="2"
                           ItemsSource="{Binding CollModelSettings}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Project Name"
@@ -144,92 +144,110 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
-            </ScrollViewer>
-            <Border x:Name="borderPopup"
-                    Background="{DynamicResource MaingridBaground}"
-                    BorderBrush="{DynamicResource DGHeaderColor}"
-                    BorderThickness="1"
-                    Grid.Row="2"
-                    Height="300"
-                    Width="300"
-                    Visibility="Collapsed"
-                    Margin="0,50,0,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid Background="{DynamicResource DGHeaderColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="25"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Add Settings" VerticalAlignment="Center" Foreground="White"
-                                   FontFamily="{DynamicResource MainFontFamily}" Margin="5,0,0,0"/>
-                        <Button x:Name="btnClose"
-                                Click="btnClose_Click"
-                                Grid.Column="1"
-                                Content="*"
-                                Style="{DynamicResource PopupCloseButtonStyle}" />
-
-
-                    </Grid>
-                    <Grid Grid.Row="1">
+            <Popup x:Name="borderPopup"
+                   Placement="Center"
+                   IsOpen="False"
+                   StaysOpen="False"
+                   AllowsTransparency="True"
+                   Height="300"
+                   Width="300" VerticalOffset="60">
+                <Border Background="{DynamicResource MaingridBaground}"
+                        BorderBrush="{DynamicResource DGHeaderColor}"
+                        BorderThickness="1">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Project Name :"
-                                   Width="100"
-                                   HorizontalAlignment="Right"
-                                   FontFamily="{DynamicResource MainFontFamily}"
-                                   Foreground="White" VerticalAlignment="Center" Margin="10" />
-                        <TextBlock Text="Project Interval :"
-                                   Foreground="White"
-                                   Width="100"
-                                   HorizontalAlignment="Right"
-                                   FontFamily="{DynamicResource MainFontFamily}"
-                                   VerticalAlignment="Center"
-                                   Margin="10"
-                                   Grid.Row="1"/>
-                        <TextBlock Text="Project Life :"
-                                   Width="100"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Right"
-                                   FontFamily="{DynamicResource MainFontFamily}"
-                                   Margin="10"
-                                   Foreground="White"
-                                   Grid.Row="2"/>
-                        <TextBox x:Name="txtProjectName" Grid.Row="0"
-                                 Text="{Binding SettingDetails.ProjectName,Mode=TwoWay}" Grid.Column="1" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <TextBox x:Name="txtProjectinterval" Grid.Row="1"
-                                 Grid.Column="1"
-                                 Text="{Binding SettingDetails.Projectinterval,Mode=TwoWay}"
-                                 Width="100"
-                                 Height="25"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtProjectlife" Grid.Row="2"
-                                 Grid.Column="1"
-                                 Text="{Binding SettingDetails.Projectlife,Mode=TwoWay}"
-                                 Width="100"
-                                 Height="25"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left" />
-                        <Button Grid.Row="3" Content="ADD" Grid.Column="1" HorizontalAlignment="Left"
-                                Width="100"
-                                Height="30"
-                                Style="{DynamicResource ButtonStyle}"
-                                Command="{Binding AddSettingCommand}"/>
+                        <Grid Background="{DynamicResource DGHeaderColor}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="25" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Add Settings"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontFamily="{DynamicResource MainFontFamily}"
+                                       Margin="5,0,0,0" />
+                            <Button x:Name="btnClose"
+                                    Click="btnClose_Click"
+                                    Grid.Column="1"
+                                    Content="*"
+                                    Style="{DynamicResource PopupCloseButtonStyle}" />
+
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Project Name :"
+                                       Width="100"
+                                       HorizontalAlignment="Right"
+                                       FontFamily="{DynamicResource MainFontFamily}"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"
+                                       Margin="10" />
+                            <TextBlock Text="Project Interval :"
+                                       Foreground="White"
+                                       Width="100"
+                                       HorizontalAlignment="Right"
+                                       FontFamily="{DynamicResource MainFontFamily}"
+                                       VerticalAlignment="Center"
+                                       Margin="10"
+                                       Grid.Row="1" />
+                            <TextBlock Text="Project Life :"
+                                       Width="100"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       FontFamily="{DynamicResource MainFontFamily}"
+                                       Margin="10"
+                                       Foreground="White"
+                                       Grid.Row="2" />
+                            <TextBox x:Name="txtProjectName"
+                                     Grid.Row="0"
+                                     Text="{Binding SettingDetails.ProjectName,Mode=TwoWay}"
+                                     Grid.Column="1"
+                                     Width="100"
+                                     Height="25"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Left" />
+                            <TextBox x:Name="txtProjectinterval"
+                                     Grid.Row="1"
+                                     Grid.Column="1"
+                                     Text="{Binding SettingDetails.Projectinterval,Mode=TwoWay}"
+                                     Width="100"
+                                     Height="25"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Left" />
+                            <TextBox x:Name="txtProjectlife"
+                                     Grid.Row="2"
+                                     Grid.Column="1"
+                                     Text="{Binding SettingDetails.Projectlife,Mode=TwoWay}"
+                                     Width="100"
+                                     Height="25"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Left" />
+                            <Button Grid.Row="3"
+                                    Content="ADD"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    Width="100"
+                                    Height="30"
+                                    Style="{DynamicResource ButtonStyle}"
+                                    Command="{Binding AddSettingCommand}" />
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Border>
+                </Border>
+            </Popup>
+                
         </Grid>
     </DockPanel>
     
