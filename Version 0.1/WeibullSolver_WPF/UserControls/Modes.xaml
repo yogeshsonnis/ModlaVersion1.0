@@ -118,7 +118,7 @@
         <Grid x:Name="grid"
               Background="#282828">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
+                <RowDefinition Height="35" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
