@@ -26,42 +26,38 @@
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Horizontal">
                     <DataGrid x:Name="dgDecisions"
-                              Width="300"
-                              Style="{DynamicResource GreenMainDataGridStyle}"
-                              RowStyle="{DynamicResource GreenAlternateRowStyleForAnotherDG}">
+                              Width="300">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Has Fans?"
                                                 Width="*"
-                                                Binding="{Binding Has_Fans,Mode=TwoWay}" />
+                                                Binding="{Binding Has_Fans,Mode=TwoWay}"/>
 
-                            <DataGridTextColumn Header="True"
+                            <DataGridTextColumn Header="TRUE"
                                                 Width="*"
-                                                Binding="{Binding True,Mode=TwoWay}" />
+                                                Binding="{Binding True,Mode=TwoWay}"
+                                                HeaderStyle="{DynamicResource TrueHeaderStyle}" />
 
                         </DataGrid.Columns>
 
                     </DataGrid>
                     <DataGrid x:Name="dgDecisions2"
                               Margin="50,0,0,0"
-                              Width="300"
-                              Style="{DynamicResource OrangeMainDataGridStyle}"
-                              RowStyle="{DynamicResource OrangeAlternateRowStyleForAnotherDG}">
+                              Width="300">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Requires Lube?"
                                                 Width="*"
                                                 Binding="{Binding Requires_Lube,Mode=TwoWay}" />
 
-                            <DataGridTextColumn Header="True"
+                            <DataGridTextColumn Header="FALSE"
                                                 Width="*"
-                                                Binding="{Binding True,Mode=TwoWay}" />
+                                                Binding="{Binding True,Mode=TwoWay}"
+                                                HeaderStyle="{DynamicResource FalseHeaderStyle}"/>
 
                         </DataGrid.Columns>
                     </DataGrid>
                     <DataGrid x:Name="dgDecisions3"
                               Margin="50,0,0,0"
-                              Width="300"
-                              Style="{DynamicResource GreenMainDataGridStyle}"
-                              RowStyle="{DynamicResource GreenAlternateRowStyleForAnotherDG}">
+                              Width="300">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Statutory"
                                                 Width="*"
@@ -69,23 +65,23 @@
 
                             <DataGridTextColumn Header="True"
                                                 Width="*"
-                                                Binding="{Binding True,Mode=TwoWay}" />
+                                                Binding="{Binding True,Mode=TwoWay}"
+                                                HeaderStyle="{DynamicResource TrueHeaderStyle}"/>
 
                         </DataGrid.Columns>
                     </DataGrid>
                     <DataGrid x:Name="dgDecisions4"
                               Margin="50,0,0,0"
-                              Width="300"
-                              Style="{DynamicResource GreenMainDataGridStyle}"
-                              RowStyle="{DynamicResource GreenAlternateRowStyleForAnotherDG}">
+                              Width="300">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="People Explosure?"
                                                 Width="*"
                                                 Binding="{Binding People_Explosure,Mode=TwoWay}" />
 
-                            <DataGridTextColumn Header="0.3"
+                            <DataGridTextColumn Header=" 0.3"
                                                 Width="*"
-                                                Binding="{Binding People_Explosure,Mode=TwoWay}" />
+                                                Binding="{Binding People_Explosure,Mode=TwoWay}" 
+                                                HeaderStyle="{DynamicResource TrueHeaderStyle}"/>
 
                         </DataGrid.Columns>
                     </DataGrid>

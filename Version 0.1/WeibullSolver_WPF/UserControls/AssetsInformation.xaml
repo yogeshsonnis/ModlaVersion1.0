@@ -136,7 +136,7 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center"
                   Margin="5,0,0,5">
-                <Button />
+                <Button Height="25" />
 
 
             </Grid>

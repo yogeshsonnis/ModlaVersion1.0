@@ -36,8 +36,6 @@
                 Value="{DynamicResource WhiteColor}" />
         <Setter Property="FontFamily"
                 Value="{DynamicResource MainFontFamily}" />
-        <Setter Property="FontSize"
-                Value="{DynamicResource LargeFontSize}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
@@ -940,6 +938,222 @@
                 Value="False" />
         <Setter Property="ColumnHeaderStyle"
                 Value="{DynamicResource SettingGridHeaderStyle}" />
+    </Style>
+
+    <Style x:Key="TrueHeaderStyle"
+           TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource DGGreenHeaderColor}" />
+        <Setter Property="Background"
+                Value="{DynamicResource DGHeaderColor}" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Top" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="Height"
+                Value="35" />
+        <Setter Property="SeparatorBrush"
+                Value="{DynamicResource DGSeparatorBrush}" />
+        <Setter Property="FontFamily"
+                Value="{DynamicResource MainFontFamily}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Themes:DataGridHeaderBorder BorderBrush="{DynamicResource DGColumnHeaderBorderBrush}"
+                                                     BorderThickness="0,0,1,1"
+                                                     IsClickable="{TemplateBinding CanUserSort}"
+                                                     IsPressed="{TemplateBinding IsPressed}"
+                                                     Padding="{TemplateBinding Padding}"
+                                                     SortDirection="{TemplateBinding SortDirection}"
+                                                     SeparatorVisibility="{TemplateBinding SeparatorVisibility
+                            }">
+                            <Themes:DataGridHeaderBorder.Style>
+                                <Style TargetType="Themes:DataGridHeaderBorder">
+                                    <Setter Property="Background"
+                                            Value="{DynamicResource DGHeaderColor}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=SortArrow,Path=Visibility}"
+                                                     Value="Visible">
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Themes:DataGridHeaderBorder.Style>
+                            <Grid  Margin="5,0,5,0">
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="16" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="0"
+                                                  HorizontalAlignment="Stretch"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  VerticalAlignment="Center" />
+
+
+                                <Path x:Name="SortArrow"
+                                      Grid.Column="1"
+                                      Data="M0,0L32,0 16,19.7z"
+                                      Stretch="Uniform"
+                                      Fill="{DynamicResource SortArrowPathFill}"
+                                      Width="10"
+                                      Height="10"
+                                      Margin="0,0,3,0"
+                                      RenderTransformOrigin="0.5,0.5"
+                                      HorizontalAlignment="Right"
+                                      Visibility="Visible">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <RotateTransform Angle="0" />
+                                                <ScaleTransform ScaleX="1"
+                                                                ScaleY="1" />
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                        </Themes:DataGridHeaderBorder>
+                        <Thumb x:Name="PART_LeftHeaderGripper"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource ColumnHeaderGripperStyle}" />
+                        <Thumb x:Name="PART_RightHeaderGripper"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource ColumnHeaderGripperStyle}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SortDirection"
+                                 Value="Ascending">
+                            <Setter TargetName="SortArrow"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="SortArrow"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="180" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="SortDirection"
+                                 Value="Descending">
+                            <Setter TargetName="SortArrow"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FalseHeaderStyle"
+           TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background"
+                Value="{DynamicResource DGHeaderColor}" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Top" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="Height"
+                Value="35" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+        <Setter Property="SeparatorBrush"
+                Value="{DynamicResource DGSeparatorBrush}" />
+        <Setter Property="Foreground"
+                Value="Red" />
+        <Setter Property="FontFamily"
+                Value="{DynamicResource MainFontFamily}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Themes:DataGridHeaderBorder BorderBrush="{DynamicResource DGColumnHeaderBorderBrush}"
+                                                     BorderThickness="0,0,1,1"
+                                                     IsClickable="{TemplateBinding CanUserSort}"
+                                                     IsPressed="{TemplateBinding IsPressed}"
+                                                     Padding="{TemplateBinding Padding}"
+                                                     SortDirection="{TemplateBinding SortDirection}"
+                                                     SeparatorVisibility="{TemplateBinding SeparatorVisibility
+                            }">
+                            <Themes:DataGridHeaderBorder.Style>
+                                <Style TargetType="Themes:DataGridHeaderBorder">
+                                    <Setter Property="Background"
+                                            Value="{DynamicResource DGHeaderColor}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=SortArrow,Path=Visibility}"
+                                                     Value="Visible">
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Themes:DataGridHeaderBorder.Style>
+                            <Grid  Margin="5,0,5,0">
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="16" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="0"
+                                                  HorizontalAlignment="Stretch"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  VerticalAlignment="Center" />
+
+
+                                <Path x:Name="SortArrow"
+                                      Grid.Column="1"
+                                      Data="M0,0L32,0 16,19.7z"
+                                      Stretch="Uniform"
+                                      Fill="{DynamicResource SortArrowPathFill}"
+                                      Width="10"
+                                      Height="10"
+                                      Margin="0,0,3,0"
+                                      RenderTransformOrigin="0.5,0.5"
+                                      HorizontalAlignment="Right"
+                                      Visibility="Visible">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <RotateTransform Angle="0" />
+                                                <ScaleTransform ScaleX="1"
+                                                                ScaleY="1" />
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                        </Themes:DataGridHeaderBorder>
+                        <Thumb x:Name="PART_LeftHeaderGripper"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource ColumnHeaderGripperStyle}" />
+                        <Thumb x:Name="PART_RightHeaderGripper"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource ColumnHeaderGripperStyle}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SortDirection"
+                                 Value="Ascending">
+                            <Setter TargetName="SortArrow"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="SortArrow"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="180" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="SortDirection"
+                                 Value="Descending">
+                            <Setter TargetName="SortArrow"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 
