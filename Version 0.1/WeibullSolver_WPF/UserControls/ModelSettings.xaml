@@ -152,7 +152,7 @@
                     Grid.Row="2"
                     Height="300"
                     Width="300"
-                    Visibility="Visible"
+                    Visibility="Collapsed"
                     Margin="0,50,0,0">
                 <Grid>
                     <Grid.RowDefinitions>
