@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WeibullSolverLibrary.Common_Code;
+using WeibullSolver_WPF.ViewModels;
 
 namespace WeibullSolver_WPF.ViewModels
 {
@@ -21,6 +23,20 @@ namespace WeibullSolver_WPF.ViewModels
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
+        #region privateFields
+
+        RelayCommand addSettingCommand;
+        RelayCommand addNewModelCommand;
+        RelayCommand saveModelCommand;
+        RelayCommand loadModelCommand;
+
+        ProjectParameters settingDetails;
+        #endregion
+
+        #region Properties
+        public ObservableCollection<ProjectParameters> CollModelSettings { get; set; }
         public class RelayCommand : ICommand
         {
             private readonly Action _execute;
@@ -60,9 +76,6 @@ namespace WeibullSolver_WPF.ViewModels
                 }
             }
         }
-
-        public ObservableCollection<ProjectParameters>CollModelSettings { get; set; }
-
         public RelayCommand AddSettingCommand
         {
             get
@@ -76,7 +89,6 @@ namespace WeibullSolver_WPF.ViewModels
                 RaisePropertyChanged("AddSettingCommand");
             }
         }
-
         public ProjectParameters SettingDetails
         {
             get
@@ -90,22 +102,67 @@ namespace WeibullSolver_WPF.ViewModels
                 RaisePropertyChanged("SettingDetails");
             }
         }
+        public RelayCommand AddNewModelCommand
+        {
+            get
+            {
+                return addNewModelCommand;
+            }
 
-        RelayCommand addSettingCommand;
+            set
+            {
+                addNewModelCommand = value;
+                RaisePropertyChanged("AddNewModelCommand");
+            }
+        }
 
-        ProjectParameters settingDetails;
+        public RelayCommand SaveModelCommand
+        {
+            get
+            {
+                return saveModelCommand;
+            }
 
+            set
+            {
+                saveModelCommand = value;
+                RaisePropertyChanged("SaveModelCommand");
+            }
+        }
+
+        public RelayCommand LoadModelCommand
+        {
+            get
+            {
+                return loadModelCommand;
+            }
+
+            set
+            {
+                loadModelCommand = value;
+                RaisePropertyChanged("LoadModelCommand");
+            }
+        }
+
+        #endregion
+
+        #region Constructor
         public ModelSettingsVM()
         {
             AddSettingCommand = new RelayCommand(OnAddSetting);
+            AddNewModelCommand = new RelayCommand(OnAddNewModel);
+            SaveModelCommand = new RelayCommand(OnSaveModel);
+            LoadModelCommand = new RelayCommand(OnLoadModel);
             CollModelSettings = new ObservableCollection<ProjectParameters>();
             SettingDetails = new ProjectParameters();
         }
+        #endregion
 
+        #region Methods
         private void OnAddSetting()
         {
             //CollModelSettings = new ObservableCollection<ProjectParameters>();
-            if(SettingDetails.ProjectName != null)
+            if (SettingDetails.ProjectName != null)
             {
                 CollModelSettings.Add(new ProjectParameters { ProjectName = SettingDetails.ProjectName, Projectinterval = SettingDetails.Projectinterval, Projectlife = SettingDetails.Projectlife });
                 SettingDetails = new ProjectParameters();
@@ -115,5 +172,25 @@ namespace WeibullSolver_WPF.ViewModels
                 MessageBox.Show("Please enter project name");
             }
         }
+        private void OnLoadModel()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+            }
+
+        }
+
+        private void OnSaveModel()
+        {
+
+        }
+
+        private void OnAddNewModel()
+        {
+            Model model = new Model();            ProjectParameters projectparameter = new ProjectParameters();            //projectparameter.ProjectName = "";            //projectparameter.Projectlife = 0;            //projectparameter.Projectinterval = 0;            //projectparameter.TimeWindows = 0;
+        }
+        #endregion
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WeibullSolver_WPF.CommonControls;
+using WeibullSolver_WPF.ViewModels;
 
 namespace WeibullSolver_WPF
 {
@@ -24,7 +25,10 @@ namespace WeibullSolver_WPF
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new ModelSettingsVM();
             checkboxAll.IsChecked = true;
+            borderFilters.Visibility = Visibility.Collapsed;
+            btnHome.IsChecked = true;
         }
 
         private void btnOverview_Click(object sender, RoutedEventArgs e)
