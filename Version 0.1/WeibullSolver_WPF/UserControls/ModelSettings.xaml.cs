@@ -24,7 +24,7 @@ namespace WeibullSolver_WPF.UserControls
         public ModelSettings()
         {
             InitializeComponent();
-            this.DataContext = new ModelSettingsVM();
+            //this.DataContext = new ModelSettingsVM();
 
             //List<TicketInfo> ticketsList = new List<TicketInfo>
             //{

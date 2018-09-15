@@ -362,7 +362,7 @@
         <Setter Property="VerticalGridLinesBrush"
                 Value="{DynamicResource DGHeaderVerticalGridLinesBrush}" />
         <Setter Property="IsReadOnly"
-                Value="True" />
+                Value="False" />
         <Setter Property="RowHeight"
                 Value="28" />
         <Setter Property="CanUserAddRows"

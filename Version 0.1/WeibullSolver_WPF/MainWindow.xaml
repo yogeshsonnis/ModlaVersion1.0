@@ -300,7 +300,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <control:ModelSettings Margin="10" />
+            <control:ModelSettings x:Name="mdSetting" Margin="10" />
         </Grid>
         <Grid x:Name="gridHome"
               Visibility="Visible"

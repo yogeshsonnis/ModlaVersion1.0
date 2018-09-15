@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="WeibullSolver_WPF.UserControls.ModelSettings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WeibullSolver_WPF.UserControls"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="AlternateRowStyle"
                TargetType="{x:Type DataGridRow}">
@@ -118,39 +118,83 @@
                        Foreground="White"
                        VerticalAlignment="Center"
                        Margin="0,0,0,5" />
-            <Button x:Name="btnADD" Grid.Column="1"
+            <Button x:Name="btnADD"
+                    Grid.Column="1"
                     Style="{DynamicResource ButtonStyle}"
                     Content="Add Setting"
-                    Margin="0,0,0,5" 
-                    Click="btnADD_Click"/>
-         
-                <DataGrid x:Name="dgModelSettings"
-                          Grid.Row="1"
-                          Grid.ColumnSpan="2"
-                          ItemsSource="{Binding CollModelSettings}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Project Name"
-                                            Width="*"
-                                            Binding="{Binding ProjectName}" />
+                    Margin="0,0,0,5"
+                    Click="btnADD_Click"
+                    Visibility="Collapsed"/>
 
-                        <DataGridTextColumn Header="Project Interval"
-                                            Width="*"
-                                            Binding="{Binding Projectinterval}" />
+            <DataGrid x:Name="dgModelSettings"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      ItemsSource="{Binding CollModelSettings1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Settings"
+                                        Width="*"
+                                        Binding="{Binding ProjectName}" 
+                                        IsReadOnly="True"/>
 
-                        <DataGridTextColumn Header="Project Life"
-                                            Width="*"
-                                            Binding="{Binding Projectlife}" />
+                    <DataGridTextColumn Header="Value"
+                                        Width="*">
+                        <!--Binding="{Binding Projectinterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">-->
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Grid VerticalAlignment="Center"
+                                                  Height="45"
+                                                  Background="Transparent">
+                                                <TextBox VerticalAlignment="Center"
+                                                         Text="{TemplateBinding Content}"
+                                                         Background="Transparent"
+                                                         Foreground="White"
+                                                         BorderThickness="0">
+                                                    <TextBox.Style>
+                                                        <Style TargetType="TextBox">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Path=ProjectName}"
+                                                                             Value="Project Life">
+                                                                    <Setter Property="Text"
+                                                                            Value="{Binding Path=Projectlife,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Path=ProjectName}"
+                                                                             Value="Projects Interval">
+                                                                    <Setter Property="Text"
+                                                                            Value="{Binding Path=Projectinterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Path=ProjectName}"
+                                                                             Value="Apply InspectionAt Time Zero">
+                                                                    <Setter Property="Text"
+                                                                            Value="{Binding Path=ApplyInspectionAtTimeZero,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Style>
+                                                </TextBox>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>                               
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                     
+                    </DataGridTextColumn>
 
-                    </DataGrid.Columns>
+                </DataGrid.Columns>
 
-                </DataGrid>
+
+            </DataGrid>
             <Popup x:Name="borderPopup"
                    Placement="Center"
                    IsOpen="False"
                    StaysOpen="False"
                    AllowsTransparency="True"
                    Height="300"
-                   Width="300" VerticalOffset="60">
+                   Width="300"
+                   VerticalOffset="60">
                 <Border Background="{DynamicResource MaingridBaground}"
                         BorderBrush="{DynamicResource DGHeaderColor}"
                         BorderThickness="1">
@@ -247,10 +291,10 @@
                     </Grid>
                 </Border>
             </Popup>
-                
+
         </Grid>
     </DockPanel>
-    
 
-    
+
+
 </UserControl>

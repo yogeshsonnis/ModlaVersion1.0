@@ -41,7 +41,7 @@ namespace WeibullSolver_WPF
                 gridModelConfiguration.Visibility = Visibility.Collapsed;
                 gridBatching.Visibility = Visibility.Collapsed;
                 gridHelp.Visibility = Visibility.Collapsed;
-                gridHome.Visibility = Visibility.Visible;
+                gridHome.Visibility = Visibility.Visible; 
             }
             else if(btnOverview.IsChecked==true)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -14,12 +15,51 @@ namespace WeibullSolverLibrary.Common_Code
     /// 
     public class ProjectParameters
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void RaisePropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         //Storage for Project Parameters
-        public string ProjectName { get; set; }
-        public int Projectinterval { get; set; }
+        string projectName;
+        int projectinterval;
+      //  public string ProjectName { get; set; }
+      // public int Projectinterval { get; set; }
         public int Projectlife { get; set; }
         public int TimeWindows { get; set; }
         public bool ApplyInspectionAtTimeZero { get; set; }
+
+        public string ProjectName
+        {
+            get
+            {
+                return projectName;
+            }
+
+            set
+            {
+                projectName = value;
+                RaisePropertyChanged("ProjectName");
+            }
+        }
+
+        public int Projectinterval
+        {
+            get
+            {
+                return projectinterval;
+            }
+
+            set
+            {
+                projectinterval = value;
+                RaisePropertyChanged("Projectinterval");
+            }
+        }
+
         public double[] GetXaxis()
         {
             int timewindows = Projectlife / Projectinterval;

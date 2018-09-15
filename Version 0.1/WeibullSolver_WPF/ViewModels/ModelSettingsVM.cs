@@ -33,10 +33,11 @@ namespace WeibullSolver_WPF.ViewModels
         RelayCommand loadModelCommand;
 
         ProjectParameters settingDetails;
+        ObservableCollection<ProjectParameters> CollModelSettings;
         #endregion
 
         #region Properties
-        public ObservableCollection<ProjectParameters> CollModelSettings { get; set; }
+        // public ObservableCollection<ProjectParameters> CollModelSettings { get; set; }
         public class RelayCommand : ICommand
         {
             private readonly Action _execute;
@@ -144,6 +145,20 @@ namespace WeibullSolver_WPF.ViewModels
             }
         }
 
+        public ObservableCollection<ProjectParameters> CollModelSettings1
+        {
+            get
+            {
+                return CollModelSettings;
+            }
+
+            set
+            {
+                CollModelSettings = value;
+                RaisePropertyChanged("CollModelSettings1");
+            }
+        }
+
         #endregion
 
         #region Constructor
@@ -153,7 +168,7 @@ namespace WeibullSolver_WPF.ViewModels
             AddNewModelCommand = new RelayCommand(OnAddNewModel);
             SaveModelCommand = new RelayCommand(OnSaveModel);
             LoadModelCommand = new RelayCommand(OnLoadModel);
-            CollModelSettings = new ObservableCollection<ProjectParameters>();
+            CollModelSettings1 = new ObservableCollection<ProjectParameters>();
             SettingDetails = new ProjectParameters();
         }
         #endregion
@@ -164,7 +179,7 @@ namespace WeibullSolver_WPF.ViewModels
             //CollModelSettings = new ObservableCollection<ProjectParameters>();
             if (SettingDetails.ProjectName != null)
             {
-                CollModelSettings.Add(new ProjectParameters { ProjectName = SettingDetails.ProjectName, Projectinterval = SettingDetails.Projectinterval, Projectlife = SettingDetails.Projectlife });
+                CollModelSettings1.Add(new ProjectParameters { ProjectName = SettingDetails.ProjectName, Projectinterval = SettingDetails.Projectinterval, Projectlife = SettingDetails.Projectlife });
                 SettingDetails = new ProjectParameters();
             }
             else
@@ -189,8 +204,15 @@ namespace WeibullSolver_WPF.ViewModels
 
         private void OnAddNewModel()
         {
-            Model model = new Model();            ProjectParameters projectparameter = new ProjectParameters();            //projectparameter.ProjectName = "";            //projectparameter.Projectlife = 0;            //projectparameter.Projectinterval = 0;            //projectparameter.TimeWindows = 0;
-        }
+            Model model = new Model();            ProjectParameters projectparameter = new ProjectParameters();
+            CollModelSettings1 = new ObservableCollection<ProjectParameters>();
+            //  CollModelSettings1.Add(new ProjectParameters { ProjectName = "ABC", Projectinterval = 0, Projectlife = 0 });
+            CollModelSettings1.Add(new ProjectParameters { ProjectName = "Project Life",Projectlife= 0 });            CollModelSettings1.Add(new ProjectParameters { ProjectName = "Projects Interval", Projectinterval = 0 });            CollModelSettings1.Add(new ProjectParameters { ProjectName = "Apply InspectionAt Time Zero", ApplyInspectionAtTimeZero = false });
+                //projectparameter.ProjectName = "";
+                //projectparameter.Projectlife = 0;
+                //projectparameter.Projectinterval = 0;
+                //projectparameter.TimeWindows = 0;
+           }
         #endregion
     }
 }
