@@ -24,29 +24,7 @@ namespace WeibullSolver_WPF.UserControls
         public ModelSettings()
         {
             InitializeComponent();
-            //this.DataContext = new ModelSettingsVM();
-
-            //List<TicketInfo> ticketsList = new List<TicketInfo>
-            //{
-            //    new TicketInfo{ Setting="Project Life",Description="Project Life",Value="87600"},
-            //    new TicketInfo{ Setting="Apply Inspection at time 0",Description="Apply Inspection at time 0",Value="TRUE"},
-            //     new TicketInfo{ Setting="Project Life",Description="Project Life",Value="87600"},
-            //    new TicketInfo{ Setting="Apply Inspection at time 0",Description="Apply Inspection at time 0",Value="TRUE"},
-            //     new TicketInfo{ Setting="Project Life",Description="Project Life",Value="87600"},
-            //    new TicketInfo{ Setting="Apply Inspection at time 0",Description="Apply Inspection at time 0",Value="TRUE"},
-            //     new TicketInfo{ Setting="Project Life",Description="Project Life",Value="87600"},
-            //    new TicketInfo{ Setting="Apply Inspection at time 0",Description="Apply Inspection at time 0",Value="TRUE"}
-            //};
-            //dgModelSettings.ItemsSource = ticketsList;
         }
-        //public class TicketInfo
-        //{
-        //    public string Setting { get; set; }
-        //    public string Description { get; set; }
-        //    public string Value { get; set; }
-
-        //}
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             borderPopup.IsOpen = false;

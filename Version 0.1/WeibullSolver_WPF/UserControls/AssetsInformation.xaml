@@ -145,26 +145,27 @@
             <DataGrid x:Name="dgData"
                       MinHeight="50"
                       Grid.Row="1"
-                      Grid.ColumnSpan="2">
+                      Grid.ColumnSpan="2"
+                      ItemsSource="{Binding CollAssets_Informatoin,Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Unique ID"
                                         Width="*"
-                                        Binding="{Binding Unique_ID}" />
+                                        Binding="{Binding UniqueID}" />
 
                     <DataGridTextColumn Header="Has Fans?"
                                         Width="*"
-                                        Binding="{Binding Has_Fans}" />
+                                        Binding="{Binding IsHasFans}" />
 
                     <DataGridTextColumn Header="Requires Lube?"
                                         Width="*"
-                                        Binding="{Binding Requires_Lube}" />
+                                        Binding="{Binding IsRequiresLube}" />
                     <DataGridTextColumn Header="Statutory"
                                         Width="*"
-                                        Binding="{Binding Statutory}" />
+                                        Binding="{Binding IsStatutory}" />
 
                     <DataGridTextColumn Header="Corresive Environment"
                                         Width="*"
-                                        Binding="{Binding Corrosive_Environment}" />
+                                        Binding="{Binding CorrosiveEnvironment}" />
 
                     <DataGridTextColumn Header="People"
                                         Width="*"

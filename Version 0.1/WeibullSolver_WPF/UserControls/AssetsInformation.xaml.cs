@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeibullSolver_WPF.ViewModels;
 
 namespace WeibullSolver_WPF.UserControls
 {
@@ -22,33 +23,8 @@ namespace WeibullSolver_WPF.UserControls
     {
         public AssetsInformation()
         {
-            InitializeComponent(); List<TicketInfo> ticketsList = new List<TicketInfo>
-            {
-                new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                 new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                 new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                 new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                 new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-                new TicketInfo{ Unique_ID="MO12345", Has_Fans=true, Requires_Lube=false,Statutory=true,Corrosive_Environment=0.9,People=0.3},
-
-
-
-            };
-            dgData.ItemsSource = ticketsList;
-        }
-        public class TicketInfo
-        {
-            public string Unique_ID { get; set; }
-            public bool Has_Fans { get; set; }
-            public bool Requires_Lube { get; set; }
-            public bool Statutory { get; set; }
-            public double Corrosive_Environment { get; set; }
-            public double People { get; set; }
-
+            InitializeComponent();
+            this.DataContext = new OverviewVM();
         }
     }
 }

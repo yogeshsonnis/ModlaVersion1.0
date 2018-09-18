@@ -129,7 +129,7 @@
             <DataGrid x:Name="dgModelSettings"
                       Grid.Row="1"
                       Grid.ColumnSpan="2"
-                      ItemsSource="{Binding CollModelSettings1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                      ItemsSource="{Binding CollModelSettings,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Settings"
                                         Width="*"

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeibullSolver_WPF.ViewModels;
 
 namespace WeibullSolver_WPF.UserControls
 {
@@ -22,29 +23,8 @@ namespace WeibullSolver_WPF.UserControls
     {
         public PrimaryTasks()
         {
-            InitializeComponent(); List<TicketInfo> ticketsList = new List<TicketInfo>
-            {
-                new TicketInfo{ Task="Vibration Analysis",Task_Type="Planned",Optimised_Frequency="Monthly"},
-                new TicketInfo{ Task="Statutory Test",Task_Type="Inspection",Optimised_Frequency="Yearly"},
-                 new TicketInfo{ Task="Vibration Analysis",Task_Type="Planned",Optimised_Frequency="Monthly"},
-                new TicketInfo{ Task="Statutory Test",Task_Type="Inspection",Optimised_Frequency="Yearly"},
-
-                 new TicketInfo{ Task="Vibration Analysis",Task_Type="Planned",Optimised_Frequency="Monthly"},
-                new TicketInfo{ Task="Statutory Test",Task_Type="Inspection",Optimised_Frequency="Yearly"},
-
-                 new TicketInfo{ Task="Vibration Analysis",Task_Type="Planned",Optimised_Frequency="Monthly"},
-                new TicketInfo{ Task="Statutory Test",Task_Type="Inspection",Optimised_Frequency="Yearly"},
-
-
-            };
-            dgPrimaryTasks.ItemsSource = ticketsList;
-        }
-        public class TicketInfo
-        {
-            public string Task { get; set; }
-            public string Task_Type { get; set; }
-            public string Optimised_Frequency { get; set; }
-
+            InitializeComponent();
+            this.DataContext = new OverviewVM();
         }
     }
 }

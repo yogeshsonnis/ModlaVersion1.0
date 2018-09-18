@@ -120,19 +120,21 @@
            
                 <DataGrid x:Name="dgPrimaryTasks"
                           Grid.Row="1"
+                      ItemsSource="{Binding CollPrimary_Task,Mode=TwoWay}"
                           Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Task"
                                             Width="*"
-                                            Binding="{Binding Task}" />
+                                        Binding="{Binding Task}" />
 
                         <DataGridTextColumn Header="Task Type"
                                             Width="*"
-                                            Binding="{Binding Task_Type}" />
+                                        Binding="{Binding Task_Type}" />
 
                         <DataGridTextColumn Header="Optimised Frequency"
                                             Width="*"
-                                            Binding="{Binding Optimised_Frequency}" />
+                                        Binding="{Binding Optimised_Frequency
+                            }" />
 
                     </DataGrid.Columns>
 

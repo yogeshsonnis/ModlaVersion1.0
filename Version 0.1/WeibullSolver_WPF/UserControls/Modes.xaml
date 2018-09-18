@@ -133,19 +133,20 @@
           
                 <DataGrid x:Name="dgModes"
                           Grid.Row="1"
-                          Grid.ColumnSpan="2">
+                          Grid.ColumnSpan="2"
+                      ItemsSource="{Binding CollModes,Mode=TwoWay}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Component"
                                             Width="*"
-                                            Binding="{Binding Component}" />
+                                        Binding="{Binding Component}" />
 
                         <DataGridTextColumn Header="What?"
                                             Width="*"
-                                            Binding="{Binding What}" />
+                                        Binding="{Binding What}" />
 
                         <DataGridTextColumn Header="Due To?"
                                             Width="*"
-                                            Binding="{Binding Due_To}" />
+                                        Binding="{Binding Due_To}" />
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.HeaderTemplate>
                                 <DataTemplate>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeibullSolver_WPF.ViewModels;
 
 namespace WeibullSolver_WPF.UserControls
 {
@@ -23,25 +24,7 @@ namespace WeibullSolver_WPF.UserControls
         public Modes()
         {
             InitializeComponent();
-            List<TicketInfo> ticketsList = new List<TicketInfo>
-            {
-                new TicketInfo{ Component="DE Bearing",What="Cracked",Due_To="Misalignment"},
-                new TicketInfo{ Component="Insulation",What="Deterioration",Due_To="Age"},
-                 new TicketInfo{ Component="DE Bearing",What="Cracked",Due_To="Misalignment"},
-                new TicketInfo{ Component="Insulation",What="Deterioration",Due_To="Age"},
-                 new TicketInfo{ Component="DE Bearing",What="Cracked",Due_To="Misalignment"},
-                new TicketInfo{ Component="Insulation",What="Deterioration",Due_To="Age"},
-                new TicketInfo{ Component="Insulation",What="Deterioration",Due_To="Age"},
-                new TicketInfo{ Component="Insulation",What="Deterioration",Due_To="Age"}
-            };
-            dgModes.ItemsSource = ticketsList;
-        }
-        public class TicketInfo
-        {
-            public string Component { get; set; }
-            public string What { get; set; }
-            public string Due_To { get; set; }
-
+            this.DataContext = new OverviewVM();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace WeibullSolver_WPF
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new ModelSettingsVM();
+            this.DataContext = new HomeVM();
             checkboxAll.IsChecked = true;
             borderFilters.Visibility = Visibility.Collapsed;
             btnHome.IsChecked = true;

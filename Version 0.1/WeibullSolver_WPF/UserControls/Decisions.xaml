@@ -26,7 +26,8 @@
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Horizontal">
                     <DataGrid x:Name="dgDecisions"
-                              Width="300">
+                              Width="300"
+                              ItemsSource="{Binding HasFansRecord,Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Has Fans?"
                                                 Width="*"
@@ -34,7 +35,7 @@
 
                             <DataGridTextColumn Header="TRUE"
                                                 Width="*"
-                                                Binding="{Binding True,Mode=TwoWay}"
+                                                Binding="{Binding True_Value,Mode=TwoWay}"
                                                 HeaderStyle="{DynamicResource TrueHeaderStyle}" />
 
                         </DataGrid.Columns>
@@ -42,7 +43,8 @@
                     </DataGrid>
                     <DataGrid x:Name="dgDecisions2"
                               Margin="50,0,0,0"
-                              Width="300">
+                              Width="300"
+                              ItemsSource="{Binding RequiresLubeRecord,Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Requires Lube?"
                                                 Width="*"
@@ -50,14 +52,15 @@
 
                             <DataGridTextColumn Header="FALSE"
                                                 Width="*"
-                                                Binding="{Binding True,Mode=TwoWay}"
+                                                Binding="{Binding True_Value,Mode=TwoWay}"
                                                 HeaderStyle="{DynamicResource FalseHeaderStyle}"/>
 
                         </DataGrid.Columns>
                     </DataGrid>
                     <DataGrid x:Name="dgDecisions3"
                               Margin="50,0,0,0"
-                              Width="300">
+                              Width="300"
+                              ItemsSource="{Binding StatutoryRecord,Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Statutory"
                                                 Width="*"
@@ -65,14 +68,15 @@
 
                             <DataGridTextColumn Header="True"
                                                 Width="*"
-                                                Binding="{Binding True,Mode=TwoWay}"
+                                                Binding="{Binding True_Value,Mode=TwoWay}"
                                                 HeaderStyle="{DynamicResource TrueHeaderStyle}"/>
 
                         </DataGrid.Columns>
                     </DataGrid>
                     <DataGrid x:Name="dgDecisions4"
                               Margin="50,0,0,0"
-                              Width="300">
+                              Width="300"
+                              ItemsSource="{Binding PeopleExplosureRecord,Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="People Explosure?"
                                                 Width="*"
