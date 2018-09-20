@@ -66,7 +66,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="HelperClasses\BaseHandler.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="Models\Assets_Information.cs" />
     <Compile Include="Models\Decisions.cs" />
@@ -84,6 +83,9 @@
     <Compile Include="UserControls\Modes.xaml.cs">
       <DependentUpon>Modes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ModesInfoPopup.xaml.cs">
+      <DependentUpon>ModesInfoPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PrimaryTasks.xaml.cs">
       <DependentUpon>PrimaryTasks.xaml</DependentUpon>
     </Compile>
@@ -92,6 +94,7 @@
     </Compile>
     <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\ModelSettingsVM.cs" />
+    <Compile Include="ViewModels\ModesInfoVM.cs" />
     <Compile Include="ViewModels\OverviewVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Modes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ModesInfoPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

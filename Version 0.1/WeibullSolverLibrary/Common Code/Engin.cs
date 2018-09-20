@@ -248,8 +248,53 @@ namespace WeibullSolverLibrary.Common_Code
         }
     }
 
-    public class Failuremode
+    public class Failuremode : BaseHandler
     {
+        string component;
+        string what;
+        string due_To;
+
+        public string Component
+        {
+            get
+            {
+                return component;
+            }
+
+            set
+            {
+                component = value;
+                NotifyPropertyChanged("Component");
+            }
+        }
+
+        public string What
+        {
+            get
+            {
+                return what;
+            }
+
+            set
+            {
+                what = value;
+                NotifyPropertyChanged("What");
+            }
+        }
+
+        public string Due_To
+        {
+            get
+            {
+                return due_To;
+            }
+
+            set
+            {
+                due_To = value;
+                NotifyPropertyChanged("Due_To");
+            }
+        }
         //Storage for Project Parameters
         public int TimeWindows { get; set; }
         public int Projectinterval { get; set; }

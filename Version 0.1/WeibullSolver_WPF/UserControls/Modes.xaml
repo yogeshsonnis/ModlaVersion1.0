@@ -104,7 +104,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
+                        <Grid Background="Transparent">
                             <Path Data="M165,0 C74.019,0 0,74.02 0,165.001 0,255.982 74.019,330 165,330 255.981,330 330,255.982 330,165.001 330,74.02 255.981,0 165,0 z M165,300 C90.56,300 30,239.44 30,165.001 30,90.562 90.56,30 165,30 239.44,30 300,90.562 300,165.001 300,239.44 239.439,300 165,300 z M164.998,70 C153.972,70 145.002,78.976 145.002,90.009 145.002,101.032 153.972,110 164.998,110 176.024,110 184.994,101.032 184.994,90.009 184.994,78.976 176.024,70 164.998,70 z M165,140 C156.716,140 150,146.716 150,155 L150,245 C150,253.284 156.716,260 165,260 173.284,260 180,253.284 180,245 L180,155 C180,146.716 173.284,140 165,140 z"
                                   Fill="#FFFFFF"
                                   Stretch="Uniform" />
@@ -134,7 +134,8 @@
                 <DataGrid x:Name="dgModes"
                           Grid.Row="1"
                           Grid.ColumnSpan="2"
-                      ItemsSource="{Binding CollModes,Mode=TwoWay}">
+                      ItemsSource="{Binding CollModes,Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Component"
                                             Width="*"
@@ -161,9 +162,10 @@
                                     <Grid HorizontalAlignment="Center"
                                           Height="20"
                                           Margin="10,0,0,0">
-                                        <Button VerticalAlignment="Center" />
-
-                                    </Grid>
+                                    <Button VerticalAlignment="Center"
+                                            Command="{Binding DataContext.CommandModesInfo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType=DataGrid,Mode=FindAncestor}}" 
+                                            CommandParameter="{Binding}"/>
+                                </Grid>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -171,6 +173,9 @@
 
                 </DataGrid>
             
+                
+
         </Grid>
+        
     </DockPanel>
 </UserControl>

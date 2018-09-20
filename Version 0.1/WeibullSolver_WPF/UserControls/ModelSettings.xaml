@@ -187,6 +187,7 @@
 
 
             </DataGrid>
+            
             <Popup x:Name="borderPopup"
                    Placement="Center"
                    IsOpen="False"

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeibullSolver_WPF.HelperClasses;
+using WeibullSolverLibrary;
 
 namespace WeibullSolver_WPF.Model
 {
