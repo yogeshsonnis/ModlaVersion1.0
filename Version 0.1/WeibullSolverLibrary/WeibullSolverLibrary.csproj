@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseHandler.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Common Code\Engin.cs" />
     <Compile Include="Common Code\Utilities.cs" />
