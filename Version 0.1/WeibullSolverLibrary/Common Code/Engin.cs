@@ -248,7 +248,7 @@ namespace WeibullSolverLibrary.Common_Code
         }
     }
 
-    public class Failuremode : BaseHandler
+    public class Failuremode
     {
         string component;
         string what;
@@ -264,7 +264,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 component = value;
-                NotifyPropertyChanged("Component");
+               
             }
         }
 
@@ -278,7 +278,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 what = value;
-                NotifyPropertyChanged("What");
+               
             }
         }
 
@@ -292,7 +292,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 due_To = value;
-                NotifyPropertyChanged("Due_To");
+                
             }
         }
         //Storage for Project Parameters
@@ -1032,19 +1032,6 @@ namespace WeibullSolverLibrary.Common_Code
         public int Identifier;
         public double Modifier;
         public int actiontype;//public enum actiontype { ENABLE, ETAX, BETAX };
-
-    }
-
-    public class BaseHandler : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
     }
 }
