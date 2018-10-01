@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WeibullSolver_WPF.ResourceDictionary">
+
+    <SolidColorBrush x:Key="TapGrid"
+                     Color="#282828" />
+    <SolidColorBrush x:Key="GridTextboxBorder"
+                     Color="#3f3f3f" />
     <SolidColorBrush x:Key="OuterBorderColor"
                      Color="#FF41719C" />
     <SolidColorBrush x:Key="TransparantColor"
@@ -30,7 +35,7 @@
                       Offset="1" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="MaingridBaground"
-                     Color="#282828" />
+                     Color="#0c0c0c" />
     <SolidColorBrush x:Key="DGHeaderColor"
                      Color="#777777" />
     <SolidColorBrush x:Key="DGOrangeHeaderColor"

@@ -12,6 +12,8 @@
                 <ResourceDictionary Source="/WeibullSolver_WPF;component/ResourceDictionary/DataGridResources.xaml" />
                 <ResourceDictionary Source="/WeibullSolver_WPF;component/ResourceDictionary/ScrollViewerStyleResource.xaml" />
                 <ResourceDictionary Source="/WeibullSolver_WPF;component/ResourceDictionary/RadioButtonStyle.xaml" />
+                <ResourceDictionary Source="/WeibullSolver_WPF;component/ResourceDictionary/TextBoxStyle.xaml" />
+                <ResourceDictionary Source="/WeibullSolver_WPF;component/ResourceDictionary/ComboboxResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
