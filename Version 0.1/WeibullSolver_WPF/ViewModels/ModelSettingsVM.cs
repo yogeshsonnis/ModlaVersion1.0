@@ -8,10 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WeibullSolverLibrary.Common_Code;
 using WeibullSolver_WPF.ViewModels;
 using WeibullSolver_WPF.HelperClasses;
 using WeibullSolverLibrary;
+using WeibullSolverLibrary.Common_Code;
 
 namespace WeibullSolver_WPF.ViewModels
 {

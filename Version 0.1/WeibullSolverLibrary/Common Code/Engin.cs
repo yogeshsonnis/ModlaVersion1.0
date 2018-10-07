@@ -168,6 +168,8 @@ namespace WeibullSolverLibrary.Common_Code
         public double?[] correctiveCosts;
         public double?[] plannedCosts;
         public double?[] inspectionCosts;
+
+
         public double?[] effectsCosts;
         public double?[] FailureProfile;
 
@@ -232,12 +234,12 @@ namespace WeibullSolverLibrary.Common_Code
             foreach (var FM in Failuremodes.Values)
             {
                 FM.Solve();
-                correctiveCostsTotal += FM.correctiveCostsTotal;
-                plannedCostsTotal += FM.plannedCostsTotal;
-                inspectionCostsTotal += FM.inspectionCostsTotal;
-                effectsCostsTotal += FM.effectsCostsTotal;
+                correctiveCostsTotal += FM.CorrectiveCostsTotal;
+                plannedCostsTotal += FM.PlannedCostsTotal;
+                inspectionCostsTotal += FM.InspectionCostsTotal;
+                effectsCostsTotal += FM.EffectsCostsTotal;
                 FailureProfileTotal += FM.FailureProfileTotal;
-                costsTotal += FM.costsTotal;
+                costsTotal += FM.CostsTotal;
                 correctiveCosts = Utilities.AddArrays(correctiveCosts, FM.correctiveCosts);
                 plannedCosts = Utilities.AddArrays(plannedCosts, FM.plannedCosts);
                 inspectionCosts = Utilities.AddArrays(inspectionCosts, FM.inspectionCosts);
@@ -248,12 +250,11 @@ namespace WeibullSolverLibrary.Common_Code
         }
     }
 
-    public class Failuremode
+    public class Failuremode : BaseHandler1
     {
         string component;
         string what;
         string due_To;
-
         public string Component
         {
             get
@@ -267,7 +268,6 @@ namespace WeibullSolverLibrary.Common_Code
                
             }
         }
-
         public string What
         {
             get
@@ -281,7 +281,6 @@ namespace WeibullSolverLibrary.Common_Code
                
             }
         }
-
         public string Due_To
         {
             get
@@ -301,7 +300,21 @@ namespace WeibullSolverLibrary.Common_Code
         public int Projectlife { get; set; }
         public bool ApplyInspectionAtTimeZero { get; set; }
         public bool Disabled { get; set; } = true;
-        public ProjectParameters ProjectParams { get; set; }
+        ProjectParameters projectParams;
+        public ProjectParameters ProjectParams
+        {
+            get
+            {
+                return projectParams;
+            }
+
+            set
+            {
+                projectParams = value;
+                NotifyPropertyChanged("ProjectParams");
+            }
+        }
+
 
         //Public Failuremode Info
         public string ID { get; set; }
@@ -326,12 +339,90 @@ namespace WeibullSolverLibrary.Common_Code
         public double?[] FailureProfile;
 
         //Totals to be returned by the solver
-        public double correctiveCostsTotal;
-        public double plannedCostsTotal;
-        public double inspectionCostsTotal;
-        public double effectsCostsTotal;
-        public double FailureProfileTotal;
-        public double costsTotal;
+        double correctiveCostsTotal;
+        public double CorrectiveCostsTotal
+        {
+            get
+            {
+                return correctiveCostsTotal;
+            }
+
+            set
+            {
+                correctiveCostsTotal = value;
+                NotifyPropertyChanged("CorrectiveCostsTotal");
+            }
+        }
+        double plannedCostsTotal;
+        public double PlannedCostsTotal
+        {
+            get
+            {
+                return plannedCostsTotal;
+            }
+
+            set
+            {
+                plannedCostsTotal = value;
+                NotifyPropertyChanged("PlannedCostsTotal");
+            }
+        }
+        double inspectionCostsTotal;
+        public double InspectionCostsTotal
+        {
+            get
+            {
+                return inspectionCostsTotal;
+            }
+
+            set
+            {
+                inspectionCostsTotal = value;
+                NotifyPropertyChanged("InspectionCostsTotal");
+            }
+        }
+        double effectsCostsTotal;
+        public double EffectsCostsTotal
+        {
+            get
+            {
+                return effectsCostsTotal;
+            }
+
+            set
+            {
+                effectsCostsTotal = value;
+                NotifyPropertyChanged("EffectsCostsTotal");
+            }
+        }
+        double failureProfileTotal;
+        public double FailureProfileTotal
+        {
+            get
+            {
+                return failureProfileTotal;
+            }
+
+            set
+            {
+                failureProfileTotal = value;
+                NotifyPropertyChanged("FailureProfileTotal");
+            }
+        }
+        double costsTotal;
+        public double CostsTotal
+        {
+            get
+            {
+                return costsTotal;
+            }
+
+            set
+            {
+                costsTotal = value;
+                NotifyPropertyChanged("CostsTotal");
+            }
+        }
 
         //Private Functions
         bool SolverInitialisations()
@@ -342,7 +433,7 @@ namespace WeibullSolverLibrary.Common_Code
             TimeWindows = ProjectParams.TimeWindows;
             correctiveCostsTotal = 0;
             plannedCostsTotal = 0;
-            inspectionCostsTotal = 0;
+            InspectionCostsTotal = 0;
             effectsCostsTotal = 0;
             FailureProfileTotal = 0;
             costsTotal = 0;
@@ -790,18 +881,19 @@ namespace WeibullSolverLibrary.Common_Code
 
             //Totalise
             plannedCostsTotal = GetTotal(plannedCosts);
-            inspectionCostsTotal = GetTotal(inspectionCosts);
+            InspectionCostsTotal = GetTotal(inspectionCosts);
             foreach (var effect in Effects) //Sums up the split effects
             {
                 effectsCostsTotal += GetTotal(effect.Costs);
             }
             correctiveCostsTotal = GetTotal(correctiveCosts);
-            costsTotal = effectsCostsTotal + inspectionCostsTotal + plannedCostsTotal + correctiveCostsTotal;
+            costsTotal = effectsCostsTotal + InspectionCostsTotal + plannedCostsTotal + correctiveCostsTotal;
             FailureProfileTotal = GetTotal(FailureProfile);
 
             return true; //Success
                          //Need to add a false capture
         }
+
         public double[] GetXaxis()
         {
             int timewindows = Projectlife / Projectinterval;
@@ -912,6 +1004,8 @@ namespace WeibullSolverLibrary.Common_Code
         public double?[] HFPlannedCosts { get; set; }
         public double?[] AdjustedHFPlannedCosts { get; set; }
         public double?[] PDFPlannedCosts { get; set; }
+        public bool IsCheckedPlannedTasks { get; set; }
+        public bool IsCheckedInspectionTasks { get; set; }
         //public bool OfflineWork { get; set; } 
 
         public List<Resource> Resources = new List<Resource>();

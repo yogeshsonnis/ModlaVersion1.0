@@ -191,16 +191,16 @@ namespace WeibullSolverLibrary
             string errors;
             errors = (Math.Abs(failures - FM.FailureProfileTotal)) <= tolerance * FM.FailureProfileTotal ? "Pass" : ((failures - FM.FailureProfileTotal) / FM.FailureProfileTotal).ToString();
             Debug.WriteLine("{0}-Test Case Failures~{1}/{2}", errors, failures, FM.FailureProfileTotal);
-            errors = (Math.Abs(correctivecosts - FM.correctiveCostsTotal)) <= tolerance * FM.correctiveCostsTotal ? "Pass" : ((correctivecosts - FM.correctiveCostsTotal) / FM.correctiveCostsTotal).ToString();
-            Debug.WriteLine("{0}-Test Case Corrective Costs~{1}/{2}", errors, correctivecosts, FM.correctiveCostsTotal);
-            errors = (Math.Abs(plannedcosts - FM.plannedCostsTotal)) <= tolerance * FM.plannedCostsTotal ? "Pass" : ((plannedcosts - FM.plannedCostsTotal) / FM.plannedCostsTotal).ToString();
-            Debug.WriteLine("{0}-Test Case Planned Costs~{1}/{2}", errors, plannedcosts, FM.plannedCostsTotal);
-            errors = (Math.Abs(inspectioncosts - FM.inspectionCostsTotal)) <= tolerance * FM.inspectionCostsTotal ? "Pass" : ((inspectioncosts - FM.inspectionCostsTotal) / FM.inspectionCostsTotal).ToString();
-            Debug.WriteLine("{0}-Test Case Inspection Costs~{1}/{2}", errors, inspectioncosts, FM.inspectionCostsTotal);
-            errors = (Math.Abs(totalcosts - FM.costsTotal)) <= tolerance * FM.costsTotal ? "Pass" : ((totalcosts - FM.costsTotal) / FM.costsTotal).ToString();
-            Debug.WriteLine("{0}-Test Case Total Costs~{1}/{2}", errors, totalcosts, FM.costsTotal);
-            errors = (Math.Abs(effectscosts - FM.effectsCostsTotal)) <= tolerance * FM.effectsCostsTotal ? "Pass" : ((effectscosts - FM.effectsCostsTotal) / FM.effectsCostsTotal).ToString();
-            Debug.WriteLine("{0}-Test Case Effects Costs~{1}/{2}", errors, effectscosts, FM.effectsCostsTotal);
+            errors = (Math.Abs(correctivecosts - FM.CorrectiveCostsTotal)) <= tolerance * FM.CorrectiveCostsTotal ? "Pass" : ((correctivecosts - FM.CorrectiveCostsTotal) / FM.CorrectiveCostsTotal).ToString();
+            Debug.WriteLine("{0}-Test Case Corrective Costs~{1}/{2}", errors, correctivecosts, FM.CorrectiveCostsTotal);
+            errors = (Math.Abs(plannedcosts - FM.PlannedCostsTotal)) <= tolerance * FM.PlannedCostsTotal ? "Pass" : ((plannedcosts - FM.PlannedCostsTotal) / FM.PlannedCostsTotal).ToString();
+            Debug.WriteLine("{0}-Test Case Planned Costs~{1}/{2}", errors, plannedcosts, FM.PlannedCostsTotal);
+            errors = (Math.Abs(inspectioncosts - FM.InspectionCostsTotal)) <= tolerance * FM.InspectionCostsTotal ? "Pass" : ((inspectioncosts - FM.InspectionCostsTotal) / FM.InspectionCostsTotal).ToString();
+            Debug.WriteLine("{0}-Test Case Inspection Costs~{1}/{2}", errors, inspectioncosts, FM.InspectionCostsTotal);
+            errors = (Math.Abs(totalcosts - FM.CostsTotal)) <= tolerance * FM.CostsTotal ? "Pass" : ((totalcosts - FM.CostsTotal) / FM.CostsTotal).ToString();
+            Debug.WriteLine("{0}-Test Case Total Costs~{1}/{2}", errors, totalcosts, FM.CostsTotal);
+            errors = (Math.Abs(effectscosts - FM.EffectsCostsTotal)) <= tolerance * FM.EffectsCostsTotal ? "Pass" : ((effectscosts - FM.EffectsCostsTotal) / FM.EffectsCostsTotal).ToString();
+            Debug.WriteLine("{0}-Test Case Effects Costs~{1}/{2}", errors, effectscosts, FM.EffectsCostsTotal);
         }
         public static double GetTotal(double?[] inputarray)
         {

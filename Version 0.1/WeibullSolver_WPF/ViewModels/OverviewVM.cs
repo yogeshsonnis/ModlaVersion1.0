@@ -8,7 +8,6 @@ using System.Windows.Input;
 using WeibullSolver_WPF.HelperClasses;
 using WeibullSolver_WPF.Model;
 using WeibullSolver_WPF.UserControls;
-using WeibullSolverLibrary;
 using WeibullSolverLibrary.Common_Code;
 using static WeibullSolver_WPF.Model.Decisions;
 
@@ -18,7 +17,7 @@ namespace WeibullSolver_WPF.ViewModels
     {
         #region privateFields
         ObservableCollection<Assets_Information> collAssets_Informatoin;
-        ObservableCollection<Failuremode> collModes;
+        ObservableCollection<WeibullSolverLibrary.Common_Code.Failuremode> collModes;
         ObservableCollection<Primary_Tasks> collPrimary_Task;
         ObservableCollection<HasFans> hasFansRecord;
         ObservableCollection<RequiresLube> requiresLubeRecord;
@@ -43,7 +42,7 @@ namespace WeibullSolver_WPF.ViewModels
             }
         }
 
-        public ObservableCollection<Failuremode> CollModes
+        public ObservableCollection<WeibullSolverLibrary.Common_Code.Failuremode> CollModes
         {
             get
             {
@@ -142,7 +141,7 @@ namespace WeibullSolver_WPF.ViewModels
 
         public ICommand CommandModesInfo { get; set; }
 
-        public Failuremode SelectedMode
+        public WeibullSolverLibrary.Common_Code.Failuremode SelectedMode
         {
             get
             {
@@ -204,10 +203,10 @@ namespace WeibullSolver_WPF.ViewModels
         }
         private void LoadModes()
         {
-            CollModes = new ObservableCollection<Failuremode>();
-            CollModes.Add(new Failuremode { Component = "DE Bearing",What="Cracked",Due_To="Misalignment",ID="1",Name="ABC",ModeDescription="Mode Description 1",Eta = 2.5,Beta=1.5,Gamma=1.5,Initialage=2,Disabled=true});
-            CollModes.Add(new Failuremode { Component = "Insulation", What = "Deterioration", Due_To = "Age", ID = "2", Name = "XYZ", ModeDescription = "Mode Description 2", Eta = 2.5, Beta = 2.5, Gamma = 2.5, Initialage = 2, Disabled = false });
-            CollModes.Add(new Failuremode { Component = "Insulation 1", What = "Deterioration 1", Due_To = "Age", ID = "3", Name = "PQR", ModeDescription = "Mode Description 3", Eta = 3.5, Beta = 3.5, Gamma = 3.5, Initialage = 3, Disabled = true });
+            CollModes = new ObservableCollection<WeibullSolverLibrary.Common_Code.Failuremode>();
+            CollModes.Add(new WeibullSolverLibrary.Common_Code.Failuremode { Component = "DE Bearing",What="Cracked",Due_To="Misalignment",ID="1",Name="ABC",ModeDescription="Mode Description 1",Eta = 2.5,Beta=1.5,Gamma=1.5,Initialage=2,Disabled=true});
+            CollModes.Add(new WeibullSolverLibrary.Common_Code.Failuremode { Component = "Insulation", What = "Deterioration", Due_To = "Age", ID = "2", Name = "XYZ", ModeDescription = "Mode Description 2", Eta = 2.5, Beta = 2.5, Gamma = 2.5, Initialage = 2, Disabled = false });
+            CollModes.Add(new WeibullSolverLibrary.Common_Code.Failuremode { Component = "Insulation 1", What = "Deterioration 1", Due_To = "Age", ID = "3", Name = "PQR", ModeDescription = "Mode Description 3", Eta = 3.5, Beta = 3.5, Gamma = 3.5, Initialage = 3, Disabled = true });
         }
         private void LoadAsset_Information()
         {

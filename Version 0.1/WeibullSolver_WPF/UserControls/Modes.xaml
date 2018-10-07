@@ -115,8 +115,7 @@
         </Style>
     </UserControl.Resources>
     <DockPanel>
-        <Grid x:Name="grid"
-              Background="#282828">
+        <Grid x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35" />
                 <RowDefinition Height="*" />

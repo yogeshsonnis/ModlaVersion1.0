@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WeibullSolver_WPF.ViewModels;
+using WeibullSolverLibrary.Common_Code;
 
 namespace WeibullSolver_WPF.UserControls
 {
@@ -29,7 +31,7 @@ namespace WeibullSolver_WPF.UserControls
         {
             borderPopup.IsOpen = false;
             var v = this.DataContext as ModelSettingsVM;
-            v.SettingDetails = new WeibullSolverLibrary.Common_Code.ProjectParameters();
+            v.SettingDetails = new ProjectParameters();
         }
 
         private void btnADD_Click(object sender, RoutedEventArgs e)

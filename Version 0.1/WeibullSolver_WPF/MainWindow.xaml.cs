@@ -29,7 +29,7 @@ namespace WeibullSolver_WPF
             checkboxAll.IsChecked = true;
             borderFilters.Visibility = Visibility.Collapsed;
             btnHome.IsChecked = true;
-            CreateFMTaskTab.IsChecked = true;
+            
         }
 
         private void btnOverview_Click(object sender, RoutedEventArgs e)
@@ -94,64 +94,6 @@ namespace WeibullSolver_WPF
                 gridBatching.Visibility = Visibility.Collapsed;
                 gridHome.Visibility = Visibility.Collapsed;
                 gridHelp.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void CreateFMTaskTab_Click(object sender, RoutedEventArgs e)
-        {
-            if (CreateFMTaskTab.IsChecked == true)
-            {
-                CreateFailuremode.Visibility = Visibility.Collapsed;
-                CreateFunctionFailure.Visibility = Visibility.Collapsed;
-                CreateFunction.Visibility = Visibility.Collapsed;
-                CreateLocation.Visibility = Visibility.Collapsed;
-                Grid_CreateModel.Visibility = Visibility.Collapsed;
-                CreateFMTAsk.Visibility = Visibility.Visible;
-            }
-            else if (CreateFailuremodeTab.IsChecked == true)
-            {
-                CreateFMTAsk.Visibility = Visibility.Collapsed;
-                CreateFunction.Visibility = Visibility.Collapsed;
-                CreateLocation.Visibility = Visibility.Collapsed;
-                Grid_CreateModel.Visibility = Visibility.Collapsed;
-                CreateFunctionFailure.Visibility = Visibility.Collapsed;
-                CreateFailuremode.Visibility = Visibility.Visible;
-            }
-            else if (CreateFunctionFailureTab.IsChecked == true)
-            {
-                CreateFMTAsk.Visibility = Visibility.Collapsed;
-                CreateFailuremode.Visibility = Visibility.Collapsed;
-                CreateFunction.Visibility = Visibility.Collapsed;
-                CreateLocation.Visibility = Visibility.Collapsed;
-                Grid_CreateModel.Visibility = Visibility.Collapsed;
-                CreateFunctionFailure.Visibility = Visibility.Visible;
-            }
-            else if (CreateFunctionTab.IsChecked == true)
-            {
-                CreateFMTAsk.Visibility = Visibility.Collapsed;
-                CreateFailuremode.Visibility = Visibility.Collapsed;
-                CreateFunctionFailure.Visibility = Visibility.Collapsed;
-                CreateLocation.Visibility = Visibility.Collapsed;
-                Grid_CreateModel.Visibility = Visibility.Collapsed;
-                CreateFunction.Visibility = Visibility.Visible;
-            }
-            else if (CreateLocationtab.IsChecked == true)
-            {
-                CreateFMTAsk.Visibility = Visibility.Collapsed;
-                CreateFailuremode.Visibility = Visibility.Collapsed;
-                CreateFunctionFailure.Visibility = Visibility.Collapsed;
-                CreateFunction.Visibility = Visibility.Collapsed;
-                Grid_CreateModel.Visibility = Visibility.Collapsed;
-                CreateLocation.Visibility = Visibility.Visible;
-            }
-            else if (CreateModelTab.IsChecked == true)
-            {
-                CreateFMTAsk.Visibility = Visibility.Collapsed;
-                CreateFailuremode.Visibility = Visibility.Collapsed;
-                CreateFunctionFailure.Visibility = Visibility.Collapsed;
-                CreateFunction.Visibility = Visibility.Collapsed;
-                CreateLocation.Visibility = Visibility.Collapsed;
-                Grid_CreateModel.Visibility = Visibility.Visible;
             }
         }
     }
