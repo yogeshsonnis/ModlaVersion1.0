@@ -196,21 +196,22 @@ namespace WeibullSolver_WPF.ViewModels
 
         private void OnCheckSolve()
         {
-            if(IsCheckedSolve == true)
+            if (IsCheckedSolve == true)
             {
 
                 ProjectParameters PRJ1 = new ProjectParameters() { Projectinterval = 100, Projectlife = 87600 };
+                //NewFailuremode = new Failuremode() { Name = "Test", ID = "FM001", Eta = 8760, Beta = 5, Gamma = 0, Initialage = 0 };
+                //NewFailuremode.CorrectiveTask = new FMTask() { Description = "CR1", TaskCost = 10000, TaskDuration = 24, Agereductionfactor = 1 };
+                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR1", FixedInterval = true, TaskInterval = 8760, TaskCost = 5000, TaskDuration = 10, Secondary = false, Agereductionfactor = 1 });
+                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR2", TaskInterval = 10000, TaskCost = 100, TaskDuration = 1, Secondary = true, Agereductionfactor = 1 });
+                //NewFailuremode.InspectionTasks.Add(new FMTask() { TaskCost = 10, TaskDuration = 1, TaskInterval = 738, PFInterval = 438, DetectionProbability = .3 });
+                //NewFailuremode.Effects.Add(new Effect() { Name = "Environmental Risk", EffectCost = 2000, EffectProbability = .11, EffectType = "Environmental", ApplyToCorrective = true });
                 NewFailuremode.ProjectParams = PRJ1;
                 NewFailuremode.CorrectiveTask = IsSelectedCorrectiveTask;
                 NewFailuremode.PlannedTasks = PlannedTasks.Where(x => x.IsCheckedPlannedTasks == true).ToList();
                 NewFailuremode.InspectionTasks = InspectionTasks.Where(x => x.IsCheckedInspectionTasks == true).ToList();
-                NewFailuremode.Effects.Add(new Effect() { Name = "Environmental Risk", EffectCost = 7738, EffectProbability = .2, EffectType = "Environmental", ApplyToCorrective = true });
+                NewFailuremode.Effects.Add(new Effect() { Name = "Environmental Risk", EffectCost = 2000, EffectProbability = .11, EffectType = "Environmental", ApplyToCorrective = true });
                 NewFailuremode.Solve();
-                //NewFailuremode = new Failuremode() { Name = "Test", ID = "FM001", Eta = 70762, Beta = 3.92, Gamma = 14227, Initialage = 0 };
-                //NewFailuremode.CorrectiveTask = new FMTask() { Description = "CR1", TaskCost = 1819, TaskDuration = 0, Agereductionfactor = 1 };
-                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR1", FixedInterval = true, TaskInterval = 8760, TaskCost = 2385, TaskDuration = 13, Secondary = false, Agereductionfactor = 1 });
-                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR2", TaskInterval = 10000, TaskCost = 110, TaskDuration = 13, Secondary = true, Agereductionfactor = 1 });
-                //NewFailuremode.InspectionTasks.Add(new FMTask() { TaskCost = 4430, TaskDuration = 0, TaskInterval = 448, PFInterval = 3130, DetectionProbability = 1 });
 
             }
         }

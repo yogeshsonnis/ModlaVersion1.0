@@ -275,7 +275,7 @@
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.DetectionProbability,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                 Text="{Binding NewFMTask.DetectionProbability,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
                         <TextBlock Text="AgereductionFactor : "
                                    Width="150"
                                    Grid.Column="2"
@@ -293,7 +293,7 @@
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.Agereductionfactor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding NewFMTask.Agereductionfactor,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
                                  IsEnabled="{Binding ElementName=chkInspectionTask,Path=IsChecked,Mode=TwoWay}" />
                         <TextBlock Text="Effect Cost :"
                                    Width="150"
@@ -422,7 +422,7 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
-                             Text="{Binding NewFailuremode.Eta,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                             Text="{Binding NewFailuremode.Eta,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
                     <TextBlock Text="Beta :"
                                Grid.Row="4"
                                HorizontalAlignment="Left"
@@ -438,7 +438,7 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
-                             Text="{Binding NewFailuremode.Beta,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                             Text="{Binding NewFailuremode.Beta,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
                     <TextBlock Text="Gamma : "
                                Grid.Row="5"
                                HorizontalAlignment="Left"
@@ -454,7 +454,7 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
-                             Text="{Binding NewFailuremode.Gamma,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                             Text="{Binding NewFailuremode.Gamma,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
 
                     <TextBlock Text="Intialize :"
                                Grid.Row="6"
@@ -545,10 +545,8 @@
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
-                               VerticalAlignment="Center"
-                               />
-                    <TextBox 
-                             Grid.Row="3"
+                               VerticalAlignment="Center" />
+                    <TextBox Grid.Row="3"
                              Grid.Column="3"
                              Height="25"
                              Width="150"
@@ -702,7 +700,7 @@
                               Margin="5,0,0,0"
                               DisplayMemberPath="Description"
                               ItemsSource="{Binding FMTasks,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding IsSelectedCorrectiveTask,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                              SelectedItem="{Binding IsSelectedCorrectiveTask,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Text="Planned Tasks :"
                                Width="150"
@@ -739,12 +737,13 @@
                                     <CheckBox HorizontalAlignment="Left"
                                               VerticalAlignment="Center"
                                               Margin="5,0,0,0"
-                                              IsChecked="{Binding IsCheckedPlannedTasks}"/>
+                                              IsChecked="{Binding IsCheckedPlannedTasks}" />
                                     <TextBlock Grid.Column="1"
-                                             VerticalAlignment="Center"
-                                             HorizontalAlignment="Left"
-                                             Margin="5,0,0,0" Foreground="White"
-                                             Text="{Binding Description}" />
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               Foreground="White"
+                                               Text="{Binding Description}" />
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -775,7 +774,7 @@
                              Background="Transparent"
                              ItemsSource="{Binding FMTasks,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                         <ListBox.ItemTemplate>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -785,13 +784,14 @@
                                     <CheckBox HorizontalAlignment="Left"
                                               VerticalAlignment="Center"
                                               Margin="5,0,0,0"
-                                              IsChecked="{Binding IsCheckedInspectionTasks}"/>
+                                              IsChecked="{Binding IsCheckedInspectionTasks}" />
 
                                     <TextBlock Grid.Column="1"
-                                             VerticalAlignment="Center"
-                                             HorizontalAlignment="Left"
-                                             Margin="5,0,0,0" Foreground="White"
-                                             Text="{Binding Description}" />
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               Foreground="White"
+                                               Text="{Binding Description}" />
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

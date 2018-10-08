@@ -13,16 +13,8 @@ namespace WeibullSolverLibrary.Common_Code
     /// 
     /// </summary>
     /// 
-    public class ProjectParameters
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+    public class ProjectParameters: BaseHandler1
+    { 
         //Storage for Project Parameters
         string projectName;
         int projectinterval;
@@ -42,7 +34,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 projectName = value;
-                RaisePropertyChanged("ProjectName");
+                NotifyPropertyChanged("ProjectName");
             }
         }
 
@@ -56,7 +48,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 projectinterval = value;
-                RaisePropertyChanged("Projectinterval");
+                NotifyPropertyChanged("Projectinterval");
             }
         }
 
@@ -250,18 +242,8 @@ namespace WeibullSolverLibrary.Common_Code
         }
     }
 
-    public class Failuremode
+    public class Failuremode : BaseHandler1
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
-
-            }
-        }
         string component;
         string what;
         string due_To;
@@ -1166,6 +1148,21 @@ namespace WeibullSolverLibrary.Common_Code
         public int Identifier;
         public double Modifier;
         public int actiontype;//public enum actiontype { ENABLE, ETAX, BETAX };
+
+    }
+
+    public class BaseHandler1 : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+
+            }
+        }
 
     }
 }
