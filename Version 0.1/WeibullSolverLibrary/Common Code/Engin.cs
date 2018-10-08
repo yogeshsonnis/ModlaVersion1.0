@@ -26,8 +26,8 @@ namespace WeibullSolverLibrary.Common_Code
         //Storage for Project Parameters
         string projectName;
         int projectinterval;
-      //  public string ProjectName { get; set; }
-      // public int Projectinterval { get; set; }
+        //  public string ProjectName { get; set; }
+        // public int Projectinterval { get; set; }
         public int Projectlife { get; set; }
         public int TimeWindows { get; set; }
         public bool ApplyInspectionAtTimeZero { get; set; }
@@ -250,8 +250,18 @@ namespace WeibullSolverLibrary.Common_Code
         }
     }
 
-    public class Failuremode : BaseHandler1
+    public class Failuremode
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+
+            }
+        }
         string component;
         string what;
         string due_To;
@@ -265,7 +275,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 component = value;
-               
+
             }
         }
         public string What
@@ -278,7 +288,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 what = value;
-               
+
             }
         }
         public string Due_To
@@ -291,7 +301,7 @@ namespace WeibullSolverLibrary.Common_Code
             set
             {
                 due_To = value;
-                
+
             }
         }
         //Storage for Project Parameters
@@ -982,6 +992,7 @@ namespace WeibullSolverLibrary.Common_Code
             return results;
         }
     }
+
 
     public class FMTask
     {
