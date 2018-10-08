@@ -91,6 +91,7 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Text="Description :"
                                    Width="90"
@@ -151,7 +152,7 @@
                                   VerticalAlignment="Center"
                                   Margin="10,5,0,0"
                                   IsChecked="{Binding NewFMTask.FixedInterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="Task Duration : "
+                        <TextBlock Text="Planned Tasks : "
                                    Grid.Row="4"
                                    Width="90"
                                    HorizontalAlignment="Left"
@@ -159,72 +160,28 @@
                                    Foreground="White"
                                    VerticalAlignment="Center"
                                    Margin="5,0,0,0" />
-                        <TextBox x:Name="txtTaskDuration"
-                                 Grid.Column="1"
-                                 Grid.Row="4"
-                                 Height="25"
-                                 Width="150"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.TaskDuration,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                       
-
-                       
-                        <TextBlock Text="Detection Probability : "
-                                   Grid.Column="2"
+                        <RadioButton Grid.Column="1"
+                                  Grid.Row="4"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  Margin="10,5,0,0"
+                                     Style="{StaticResource MyRadioButton}"/>
+                        <TextBlock Text="Inspection Tasks : "
+                                   Grid.Row="5"
                                    HorizontalAlignment="Left"
                                    FontFamily="{DynamicResource MainFontFamily}"
                                    Foreground="White"
                                    VerticalAlignment="Center"
                                    Margin="5,0,0,0" />
-
-                        <TextBox x:Name="txtDetectionProbability"
-                                 Grid.Column="5"
-                                 Height="25"
-                                 Width="150"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.DetectionProbability,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="AgereductionFactor : "
-                                   Width="150"
-                                   Grid.Column="2"
-                                   Grid.Row="1"
-                                   HorizontalAlignment="Left"
-                                   FontFamily="{DynamicResource MainFontFamily}"
-                                   Foreground="White"
-                                   VerticalAlignment="Center"
-                                   Margin="5,0,0,0" />
-                        <TextBox x:Name="txtAgrReductionFactor"
-                                 Grid.Column="5"
-                                 Grid.Row="1"
-                                 Height="25"
-                                 Width="150"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.Agereductionfactor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="Effect Cost :"
-                                   Width="150"
-                                   Grid.Column="2"
-                                   Grid.Row="2"
-                                   HorizontalAlignment="Left"
-                                   FontFamily="{DynamicResource MainFontFamily}"
-                                   Foreground="White"
-                                   VerticalAlignment="Center"
-                                   Margin="5,0,0,0" />
-                        <TextBox x:Name="txtEffectCost"
-                                 Grid.Column="5"
-                                 Grid.Row="2"
-                                 Height="25"
-                                 Width="150"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.EffectCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="Task Interval : "
-                                   Grid.Row="3"
+                        <RadioButton x:Name="chkInspectionTask"
+                                  Grid.Column="1"
+                                  Grid.Row="5"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  Margin="10,5,0,0"
+                                  Style="{StaticResource MyRadioButton}">
+                        </RadioButton>
+                        <TextBlock Text="Task Duration : "
                                    Grid.Column="2"
                                    Width="90"
                                    HorizontalAlignment="Left"
@@ -232,8 +189,43 @@
                                    Foreground="White"
                                    VerticalAlignment="Center"
                                    Margin="5,0,0,0" />
+                        <TextBox x:Name="txtTaskDuration"
+                                 Grid.Column="3"
+                                 Height="25"
+                                 Width="150"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Margin="10,0,0,0"
+                                 Text="{Binding NewFMTask.TaskDuration,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="Task Cost : "
+                                   Grid.Column="2"
+                                   Grid.Row="1"
+                                   Width="90"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="{DynamicResource MainFontFamily}"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,0,0" />
+                        <TextBox x:Name="txtTaskCost"
+                                 Grid.Column="3"
+                                 Grid.Row="1"
+                                 Height="25"
+                                 Width="150"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Margin="10,0,0,0"
+                                 Text="{Binding NewFMTask.TaskCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="Task Interval : "
+                                   Grid.Column="2"
+                                   Grid.Row="2"
+                                   Width="90"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="{DynamicResource MainFontFamily}"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,0,0" />
                         <TextBox x:Name="txtTaskInterval"
-                                 Grid.Row="3"
+                                 Grid.Row="2"
                                  Grid.Column="3"
                                  Height="25"
                                  Width="150"
@@ -242,7 +234,7 @@
                                  Margin="10,0,0,0"
                                  Text="{Binding NewFMTask.TaskInterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Text="PF Interval : "
-                                   Grid.Row="4"
+                                   Grid.Row="3"
                                    Grid.Column="2"
                                    Width="90"
                                    HorizontalAlignment="Left"
@@ -252,34 +244,78 @@
                                    Margin="5,0,0,0" />
 
                         <TextBox x:Name="txtPFInterval"
-                                 Grid.Row="4"
+                                 Grid.Row="3"
                                  Grid.Column="3"
                                  Height="25"
                                  Width="150"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.PFInterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="Task Cost : "
-                                   Grid.Row="5"
+                                 Text="{Binding NewFMTask.PFInterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                 IsEnabled="{Binding ElementName=chkInspectionTask,Path=IsChecked,Mode=TwoWay}"/>
+
+
+
+
+
+                        <TextBlock Text="Detection Probability : "
+                                   Grid.Row="4"
                                    Grid.Column="2"
-                                   Width="90"
                                    HorizontalAlignment="Left"
                                    FontFamily="{DynamicResource MainFontFamily}"
                                    Foreground="White"
                                    VerticalAlignment="Center"
                                    Margin="5,0,0,0" />
-                        <TextBox x:Name="txtTaskCost"
-                                 Grid.Column="3"
+
+                        <TextBox x:Name="txtDetectionProbability"
+                                 Grid.Column="5"
+                                 Grid.Row="4"
+                                 Height="25"
+                                 Width="150"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Margin="10,0,0,0"
+                                 Text="{Binding NewFMTask.DetectionProbability,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="AgereductionFactor : "
+                                   Width="150"
+                                   Grid.Column="2"
+                                   Grid.Row="5"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="{DynamicResource MainFontFamily}"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,0,0" />
+                        <TextBox x:Name="txtAgrReductionFactor"
+                                 Grid.Column="5"
                                  Grid.Row="5"
                                  Height="25"
                                  Width="150"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.TaskCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-
-
+                                 Text="{Binding NewFMTask.Agereductionfactor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                 IsEnabled="{Binding ElementName=chkInspectionTask,Path=IsChecked,Mode=TwoWay}" />
+                        <TextBlock Text="Effect Cost :"
+                                   Width="150"
+                                   Grid.Column="2"
+                                   Grid.Row="6"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="{DynamicResource MainFontFamily}"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,0,0" />
+                        <TextBox x:Name="txtEffectCost"
+                                 Grid.Column="5"
+                                 Grid.Row="6"
+                                 Height="25"
+                                 Width="150"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Margin="10,0,0,0"
+                                 Text="{Binding NewFMTask.EffectCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        
+                        
+                        
                         <StackPanel Grid.Row="10"
                                     Grid.ColumnSpan="4"
                                     Orientation="Horizontal"

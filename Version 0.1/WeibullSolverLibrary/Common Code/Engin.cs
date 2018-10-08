@@ -305,11 +305,40 @@ namespace WeibullSolverLibrary.Common_Code
             }
         }
         //Storage for Project Parameters
-        public int TimeWindows { get; set; }
-        public int Projectinterval { get; set; }
-        public int Projectlife { get; set; }
-        public bool ApplyInspectionAtTimeZero { get; set; }
-        public bool Disabled { get; set; } = true;
+        int timeWindows;
+        public int TimeWindows
+        {
+            get { return timeWindows; }
+            set { timeWindows = value; NotifyPropertyChanged("TimeWindows"); }
+        }
+
+        int projectinterval;
+        public int Projectinterval
+        {
+            get { return projectinterval; }
+            set { projectinterval = value; NotifyPropertyChanged("Projectinterval"); }
+        }
+
+        int projectlife;
+        public int Projectlife
+        {
+            get { return projectlife; }
+            set { projectlife = value; NotifyPropertyChanged("Projectlife"); }
+        }
+
+        bool applyInspectionAtTimeZero;
+        public bool ApplyInspectionAtTimeZero
+        {
+            get { return applyInspectionAtTimeZero; }
+            set { applyInspectionAtTimeZero = value; NotifyPropertyChanged("ApplyInspectionAtTimeZero"); }
+        }
+
+        bool disabled = true;
+        public bool Disabled
+        {
+            get { return disabled; }
+            set { disabled = value; NotifyPropertyChanged("Disabled"); }
+        }
         ProjectParameters projectParams;
         public ProjectParameters ProjectParams
         {
@@ -441,12 +470,12 @@ namespace WeibullSolverLibrary.Common_Code
             Projectinterval = ProjectParams.Projectinterval;
             Projectlife = ProjectParams.Projectlife;
             TimeWindows = ProjectParams.TimeWindows;
-            correctiveCostsTotal = 0;
-            plannedCostsTotal = 0;
+            CorrectiveCostsTotal = 0;
+            PlannedCostsTotal = 0;
             InspectionCostsTotal = 0;
-            effectsCostsTotal = 0;
+            EffectsCostsTotal = 0;
             FailureProfileTotal = 0;
-            costsTotal = 0;
+            CostsTotal = 0;
             TimeWindows = Projectlife / Projectinterval;
             correctiveCosts = new double?[TimeWindows];
             plannedCosts = new double?[TimeWindows];
@@ -890,14 +919,14 @@ namespace WeibullSolverLibrary.Common_Code
             MainExpansionLoop();
 
             //Totalise
-            plannedCostsTotal = GetTotal(plannedCosts);
+            PlannedCostsTotal = GetTotal(plannedCosts);
             InspectionCostsTotal = GetTotal(inspectionCosts);
             foreach (var effect in Effects) //Sums up the split effects
             {
-                effectsCostsTotal += GetTotal(effect.Costs);
+                EffectsCostsTotal += GetTotal(effect.Costs);
             }
-            correctiveCostsTotal = GetTotal(correctiveCosts);
-            costsTotal = effectsCostsTotal + InspectionCostsTotal + plannedCostsTotal + correctiveCostsTotal;
+            CorrectiveCostsTotal = GetTotal(correctiveCosts);
+            CostsTotal = EffectsCostsTotal + InspectionCostsTotal + PlannedCostsTotal + CorrectiveCostsTotal;
             FailureProfileTotal = GetTotal(FailureProfile);
 
             return true; //Success
@@ -925,7 +954,7 @@ namespace WeibullSolverLibrary.Common_Code
                 {
                     int BeforeInterval = task.TaskInterval;
                     Solve();
-                    double LowestCost = costsTotal;
+                    double LowestCost = CostsTotal;
                     int LowestCostInterval = BeforeInterval;
                     results[resultcounter] = new double[((finish - start) / step) + 1];
 
@@ -936,10 +965,10 @@ namespace WeibullSolverLibrary.Common_Code
                         {
                             task.TaskInterval = i;
                             Solve();
-                            results[resultcounter][(i - start) / step] = costsTotal;
-                            if (costsTotal < LowestCost)
+                            results[resultcounter][(i - start) / step] = CostsTotal;
+                            if (CostsTotal < LowestCost)
                             {
-                                LowestCost = costsTotal;
+                                LowestCost = CostsTotal;
                                 LowestCostInterval = i;
                             }
                             //Debug.WriteLine("Optimisation of {0} - Testing Interval {1} - Testing Cost {2}", task.Description, task.TaskInterval, costsTotal);
@@ -955,7 +984,7 @@ namespace WeibullSolverLibrary.Common_Code
                 {
                     int BeforeInterval = task.TaskInterval;
                     Solve();
-                    double LowestCost = costsTotal;
+                    double LowestCost = CostsTotal;
                     int LowestCostInterval = BeforeInterval;
                     results[resultcounter] = new double[((finish - start) / step) + 1];
 
@@ -966,10 +995,10 @@ namespace WeibullSolverLibrary.Common_Code
                         {
                             task.TaskInterval = i;
                             Solve();
-                            results[resultcounter][(i - start) / step] = costsTotal;
-                            if (costsTotal < LowestCost)
+                            results[resultcounter][(i - start) / step] = CostsTotal;
+                            if (CostsTotal < LowestCost)
                             {
-                                LowestCost = costsTotal;
+                                LowestCost = CostsTotal;
                                 LowestCostInterval = i;
                             }
                             //Debug.WriteLine("Optimisation of {0} - Testing Interval {1} - Testing Cost {2}", task.Description, task.TaskInterval, costsTotal);
@@ -988,7 +1017,7 @@ namespace WeibullSolverLibrary.Common_Code
 
 
             Solve();
-            Debug.WriteLine("Final Result : {0}", costsTotal);
+            Debug.WriteLine("Final Result : {0}", CostsTotal);
             return results;
         }
     }
