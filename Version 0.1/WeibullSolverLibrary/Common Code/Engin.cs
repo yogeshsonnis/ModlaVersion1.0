@@ -1045,6 +1045,7 @@ namespace WeibullSolverLibrary.Common_Code
         public bool ApplyToInspection { get; set; } = false;
         public double?[] Occurances { get; set; }
         public double?[] Costs { get; set; }
+        public bool IsCheckedEffect { get; set; } = false;
     }
 
     public class Resource

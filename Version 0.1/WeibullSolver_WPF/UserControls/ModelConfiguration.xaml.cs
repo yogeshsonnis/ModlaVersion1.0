@@ -32,6 +32,7 @@ namespace WeibullSolver_WPF.UserControls
         {
             if (CreateFMTaskTab.IsChecked == true)
             {
+                EffectGrid.Visibility = Visibility.Collapsed;
                 CreateFailuremode.Visibility = Visibility.Collapsed;
                 CreateFunctionFailure.Visibility = Visibility.Collapsed;
                 CreateFunction.Visibility = Visibility.Collapsed;
@@ -39,9 +40,20 @@ namespace WeibullSolver_WPF.UserControls
                 CreateModel.Visibility = Visibility.Collapsed;
                 CreateFMTAsk.Visibility = Visibility.Visible;
             }
+            else if(EffectTab.IsChecked == true)
+            {
+                CreateFMTAsk.Visibility = Visibility.Collapsed;
+                CreateFunction.Visibility = Visibility.Collapsed;
+                CreateLocation.Visibility = Visibility.Collapsed;
+                CreateModel.Visibility = Visibility.Collapsed;
+                CreateFunctionFailure.Visibility = Visibility.Collapsed;
+                CreateFailuremode.Visibility = Visibility.Collapsed;
+                EffectGrid.Visibility = Visibility.Visible;
+            }
             else if (CreateFailuremodeTab.IsChecked == true)
             {
                 CreateFMTAsk.Visibility = Visibility.Collapsed;
+                EffectGrid.Visibility = Visibility.Collapsed;
                 CreateFunction.Visibility = Visibility.Collapsed;
                 CreateLocation.Visibility = Visibility.Collapsed;
                 CreateModel.Visibility = Visibility.Collapsed;
@@ -51,6 +63,7 @@ namespace WeibullSolver_WPF.UserControls
             else if (CreateFunctionFailureTab.IsChecked == true)
             {
                 CreateFMTAsk.Visibility = Visibility.Collapsed;
+                EffectGrid.Visibility = Visibility.Collapsed;
                 CreateFailuremode.Visibility = Visibility.Collapsed;
                 CreateFunction.Visibility = Visibility.Collapsed;
                 CreateLocation.Visibility = Visibility.Collapsed;
@@ -60,6 +73,7 @@ namespace WeibullSolver_WPF.UserControls
             else if (CreateFunctionTab.IsChecked == true)
             {
                 CreateFMTAsk.Visibility = Visibility.Collapsed;
+                EffectGrid.Visibility = Visibility.Collapsed;
                 CreateFailuremode.Visibility = Visibility.Collapsed;
                 CreateFunctionFailure.Visibility = Visibility.Collapsed;
                 CreateLocation.Visibility = Visibility.Collapsed;
@@ -69,6 +83,7 @@ namespace WeibullSolver_WPF.UserControls
             else if (CreateLocationtab.IsChecked == true)
             {
                 CreateFMTAsk.Visibility = Visibility.Collapsed;
+                EffectGrid.Visibility = Visibility.Collapsed;
                 CreateFailuremode.Visibility = Visibility.Collapsed;
                 CreateFunctionFailure.Visibility = Visibility.Collapsed;
                 CreateFunction.Visibility = Visibility.Collapsed;
@@ -78,6 +93,7 @@ namespace WeibullSolver_WPF.UserControls
             else if (CreateModelTab.IsChecked == true)
             {
                 CreateFMTAsk.Visibility = Visibility.Collapsed;
+                EffectGrid.Visibility = Visibility.Collapsed;
                 CreateFailuremode.Visibility = Visibility.Collapsed;
                 CreateFunctionFailure.Visibility = Visibility.Collapsed;
                 CreateFunction.Visibility = Visibility.Collapsed;

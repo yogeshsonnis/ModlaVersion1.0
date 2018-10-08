@@ -13,6 +13,7 @@ namespace WeibullSolver_WPF.ViewModels
     public class ModelConfigurationVM : BaseHandler
     {
         FMTask newFMTask;
+        Effect newEffect;
         Failuremode newFailuremode;
         FunctionalFailure newFunctionFailure;
         ObservableCollection<FMTask> fMTasks;
@@ -20,8 +21,10 @@ namespace WeibullSolver_WPF.ViewModels
         ObservableCollection<FunctionalFailure> functionFailureColl;
         ObservableCollection<FMTask> plannedTasks;
         ObservableCollection<FMTask> inspectionTasks;
+        ObservableCollection<Effect> effectColl;
         FMTask isSelectedCorrectiveTask;
         bool isCheckedSolve;
+        bool isCheckedFunctionFailureSolve;
         bool isCheckedFailureMode;
         public FMTask NewFMTask
         {
@@ -36,6 +39,10 @@ namespace WeibullSolver_WPF.ViewModels
         public RelayCommand SaveFunctionFailure { get; set; }
 
         public RelayCommand CheckSolve { get; set; }
+
+        public RelayCommand CheckFuntionFailure { get; set; }
+
+        public RelayCommand SaveEffectCommand { get; set; }
 
         public ObservableCollection<FMTask> FMTasks
         {
@@ -180,41 +187,65 @@ namespace WeibullSolver_WPF.ViewModels
             }
         }
 
+        public ObservableCollection<Effect> EffectColl
+        {
+            get
+            {
+                return effectColl;
+            }
+
+            set
+            {
+                effectColl = value;
+                NotifyPropertyChanged("EffectColl");
+            }
+        }
+
+        public Effect NewEffect
+        {
+            get
+            {
+                return newEffect;
+            }
+
+            set
+            {
+                newEffect = value;
+                NotifyPropertyChanged("NewEffect");
+            }
+        }
+
+        public bool IsCheckedFunctionFailureSolve
+        {
+            get
+            {
+                return isCheckedFunctionFailureSolve;
+            }
+
+            set
+            {
+                isCheckedFunctionFailureSolve = value;
+                NotifyPropertyChanged("IsCheckedFunctionFailureSolve");
+            }
+        }
+
         public ModelConfigurationVM()
         {
             NewFMTask = new FMTask();
+            NewEffect = new Effect();
             NewFailuremode = new Failuremode();
             NewFunctionFailure = new FunctionalFailure();
             FMTasks = new ObservableCollection<FMTask>();
+            EffectColl = new ObservableCollection<Effect>();
             FailureModeColl = new ObservableCollection<Failuremode>();
             SaveFMTaskCommand = new RelayCommand(OnSaveFMTask);
+            SaveEffectCommand = new RelayCommand(OnSaveEffect);
             SaveFailuremodeCommand = new RelayCommand(OnSaveFailuremode);
             SaveFunctionFailure = new RelayCommand(OnSaveFunctionFailure);
             CheckSolve = new RelayCommand(OnCheckSolve);
-            
+            CheckFuntionFailure = new RelayCommand(OnFuntionFailure);
         }
-
-        private void OnCheckSolve()
-        {
-            if (IsCheckedSolve == true)
-            {
-
-                ProjectParameters PRJ1 = new ProjectParameters() { Projectinterval = 100, Projectlife = 87600 };
-                //NewFailuremode = new Failuremode() { Name = "Test", ID = "FM001", Eta = 8760, Beta = 5, Gamma = 0, Initialage = 0 };
-                //NewFailuremode.CorrectiveTask = new FMTask() { Description = "CR1", TaskCost = 10000, TaskDuration = 24, Agereductionfactor = 1 };
-                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR1", FixedInterval = true, TaskInterval = 8760, TaskCost = 5000, TaskDuration = 10, Secondary = false, Agereductionfactor = 1 });
-                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR2", TaskInterval = 10000, TaskCost = 100, TaskDuration = 1, Secondary = true, Agereductionfactor = 1 });
-                //NewFailuremode.InspectionTasks.Add(new FMTask() { TaskCost = 10, TaskDuration = 1, TaskInterval = 738, PFInterval = 438, DetectionProbability = .3 });
-                //NewFailuremode.Effects.Add(new Effect() { Name = "Environmental Risk", EffectCost = 2000, EffectProbability = .11, EffectType = "Environmental", ApplyToCorrective = true });
-                NewFailuremode.ProjectParams = PRJ1;
-                NewFailuremode.CorrectiveTask = IsSelectedCorrectiveTask;
-                NewFailuremode.PlannedTasks = PlannedTasks.Where(x => x.IsCheckedPlannedTasks == true).ToList();
-                NewFailuremode.InspectionTasks = InspectionTasks.Where(x => x.IsCheckedInspectionTasks == true).ToList();
-                NewFailuremode.Effects.Add(new Effect() { Name = "Environmental Risk", EffectCost = 2000, EffectProbability = .11, EffectType = "Environmental", ApplyToCorrective = true });
-                NewFailuremode.Solve();
-
-            }
-        }
+        
         #region FMTAsk
         private void OnSaveFMTask()
         {
@@ -222,6 +253,16 @@ namespace WeibullSolver_WPF.ViewModels
             FMTasks.Add(NewFMTask);
             MessageBox.Show("New FM Task is created successfully");
             NewFMTask = new FMTask();
+        }
+        #endregion
+
+        #region Effect
+        private void OnSaveEffect()
+        {
+            var e = NewEffect;
+            EffectColl.Add(NewEffect);
+            MessageBox.Show("Effect created successfully");
+            NewEffect = new Effect();
         }
         #endregion
 
@@ -247,6 +288,29 @@ namespace WeibullSolver_WPF.ViewModels
             NewFailuremode = new Failuremode();
         }
 
+        private void OnCheckSolve()
+        {
+            if (IsCheckedSolve == true)
+            {
+               // List<Effect> tempList = new List<Effect>();
+                ProjectParameters PRJ1 = new ProjectParameters() { Projectinterval = 100, Projectlife = 87600 };
+                //NewFailuremode = new Failuremode() { Name = "Test", ID = "FM001", Eta = 8760, Beta = 5, Gamma = 0, Initialage = 0 };
+                //NewFailuremode.CorrectiveTask = new FMTask() { Description = "CR1", TaskCost = 10000, TaskDuration = 24, Agereductionfactor = 1 };
+                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR1", FixedInterval = true, TaskInterval = 8760, TaskCost = 5000, TaskDuration = 10, Secondary = false, Agereductionfactor = 1 });
+                //NewFailuremode.PlannedTasks.Add(new FMTask() { Description = "PR2", TaskInterval = 10000, TaskCost = 100, TaskDuration = 1, Secondary = true, Agereductionfactor = 1 });
+                //NewFailuremode.InspectionTasks.Add(new FMTask() { TaskCost = 10, TaskDuration = 1, TaskInterval = 738, PFInterval = 438, DetectionProbability = .3 });
+                //NewFailuremode.Effects.Add(new Effect() { Name = "Environmental Risk", EffectCost = 2000, EffectProbability = .11, EffectType = "Environmental", ApplyToCorrective = true });
+                NewFailuremode.ProjectParams = PRJ1;
+                NewFailuremode.CorrectiveTask = IsSelectedCorrectiveTask;
+                NewFailuremode.PlannedTasks = PlannedTasks.Where(x => x.IsCheckedPlannedTasks == true).ToList();
+                NewFailuremode.InspectionTasks = InspectionTasks.Where(x => x.IsCheckedInspectionTasks == true).ToList();
+               // NewFailuremode.Effects = EffectColl.ToList();
+               NewFailuremode.Effects = EffectColl.Where(x => x.IsCheckedEffect == true).ToList();
+                NewFailuremode.Solve();
+
+            }
+        }
+
         #endregion
 
         #region FunctionFailure
@@ -260,6 +324,21 @@ namespace WeibullSolver_WPF.ViewModels
                 i++;
             }
             MessageBox.Show("Function Failure is created successfully");
+        }
+
+        private void OnFuntionFailure()
+        {
+            if (IsCheckedFunctionFailureSolve == true)
+            {
+                NewFunctionFailure.Failuremodes = new Dictionary<string, Failuremode>();
+                int i = 1;
+                foreach (var mode in FailureModeColl)
+                {
+                    NewFunctionFailure.Failuremodes.Add(String.Concat("Fun",i), mode);
+                    i++;
+                }
+                NewFunctionFailure.Solve();
+            }
         }
         #endregion
 

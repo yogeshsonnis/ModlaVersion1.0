@@ -20,6 +20,13 @@
                              Content="Create FM Task"
                              Style="{DynamicResource RadioButtonTabStyle}"
                              Click="CreateFMTaskTab_Click" />
+                <RadioButton x:Name="EffectTab"
+                             Height="25"
+                             Width="100"
+                             Margin="10,0,0,0"
+                             Content="Create Effect"
+                             Style="{DynamicResource RadioButtonTabStyle}"
+                             Click="CreateFMTaskTab_Click" />
                 <RadioButton x:Name="CreateFailuremodeTab"
                              Height="25"
                              Width="115"
@@ -67,7 +74,7 @@
                 </Grid.RowDefinitions>
                 <Border Background="#353535" />
                 <Grid x:Name="CreateFMTAsk"
-                      Visibility="Visible"
+                      Visibility="Collapsed"
                       Grid.Row="1"
                       VerticalAlignment="Stretch"
                       Margin="0,10,0,0"
@@ -339,6 +346,183 @@
 
                     </Grid>
                 </Grid>
+                <Grid x:Name="EffectGrid"
+                      Height="300"
+                      Width="620"
+                      Margin="10"
+                      Visibility="Collapsed"
+                      VerticalAlignment="Top"
+                      Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Id : "
+                               Width="110"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+
+                    <TextBox x:Name="txtEffectID"
+                             Grid.Column="1"
+                             Height="25"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Margin="5,0,0,0"
+                             Text="{Binding NewEffect.ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Name :"
+                               Grid.Row="1"
+                               Width="90"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+                    <TextBox x:Name="txtEffectName"
+                             Grid.Column="1"
+                             Grid.Row="1"
+                             Height="25"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Margin="5,0,0,0"
+                             Text="{Binding NewEffect.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Effect type:"
+                               Grid.Row="2"
+                               Width="100"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+                    <TextBox x:Name="txtEffecttype"
+                             Grid.Column="1"
+                             Grid.Row="2"
+                             Height="25"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Margin="5,0,0,0"
+                             Text="{Binding NewEffect.EffectType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Effects Costs :"
+                               Grid.Row="3"
+                               Width="90"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+                    <TextBox x:Name="txtEffectCost1"
+                             Grid.Column="1"
+                             Grid.Row="3"
+                             Height="25"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Margin="5,0,0,0"
+                             Text="{Binding NewEffect.EffectCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Effect Probability :"
+                               Grid.Column="2"
+                               Width="100"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+
+                    <TextBox x:Name="txtEffectProbability"
+                             Grid.Column="3"
+                             Height="25"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Margin="5,0,0,0"
+                             Text="{Binding NewEffect.EffectProbability,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+
+
+                    <TextBlock Text="Apply To Corrective : "
+                               Width="200"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+                    <CheckBox Grid.Column="3"
+                              Grid.Row="1"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="5,0,0,0"
+                              IsChecked="{Binding NewEffect.ApplyToCorrective,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Apply To Planned : "
+                               Width="150"
+                               Grid.Column="2"
+                               Grid.Row="2"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+
+                    <CheckBox Grid.Column="3"
+                              Grid.Row="2"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="5,0,0,0"
+                              IsChecked="{Binding NewEffect.ApplyToPlanned,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Apply To Inspection : "
+                               Width="150"
+                               Grid.Column="2"
+                               Grid.Row="3"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+
+                    <CheckBox Grid.Column="3"
+                              Grid.Row="3"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="5,0,0,0"
+                              IsChecked="{Binding NewEffect.ApplyToInspection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <StackPanel Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,5,0,0"
+                                Grid.Column="1">
+                        <Button Content="Save"
+                                Width="100"
+                                Height="25"
+                                Style="{DynamicResource ButtonStyle}"
+                                Command="{Binding SaveEffectCommand}"
+                                Margin="3" />
+                        <Button Content="Close"
+                                Width="100"
+                                Height="25"
+                                Style="{DynamicResource ButtonStyle}"
+                                Margin="3" />
+                    </StackPanel>
+
+
+
+                </Grid>
+
                 <Grid x:Name="CreateFailuremode"
                       Margin="10"
                       Grid.Row="1"
@@ -475,16 +659,14 @@
 
                     <TextBlock Text="Solve :"
                                Width="150"
-                               Grid.Column="0"
-                               Grid.Row="11"
+                               Grid.Column="2"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
                                VerticalAlignment="Center"
                                Margin="5,0,0,0" />
 
-                    <CheckBox Grid.Column="1"
-                              Grid.Row="11"
+                    <CheckBox Grid.Column="3"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Margin="5,0,0,0"
@@ -493,6 +675,7 @@
 
                     <TextBlock Text="Corrective Costs Total :"
                                Grid.Column="2"
+                               Grid.Row="1"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
@@ -500,6 +683,7 @@
                                Margin="5,0,0,0" />
                     <TextBox Grid.Column="3"
                              Height="25"
+                             Grid.Row="1"
                              Width="150"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
@@ -507,7 +691,7 @@
                              Text="{Binding NewFailuremode.CorrectiveCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Planned Costs Total :"
                                Grid.Column="2"
-                               Grid.Row="1"
+                               Grid.Row="2"
                                Width="120"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
@@ -515,7 +699,7 @@
                                VerticalAlignment="Top"
                                Margin="5,20,0,0" />
                     <TextBox Grid.Column="3"
-                             Grid.Row="1"
+                             Grid.Row="2"
                              Height="25"
                              Width="150"
                              VerticalAlignment="Top"
@@ -523,7 +707,7 @@
                              Margin="5,10,0,0"
                              Text="{Binding NewFailuremode.PlannedCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Inspection Costs Total :"
-                               Grid.Row="2"
+                               Grid.Row="3"
                                Grid.Column="2"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
@@ -531,7 +715,7 @@
                                VerticalAlignment="Center"
                                Margin="5,10,0,0" />
                     <TextBox Grid.Column="3"
-                             Grid.Row="2"
+                             Grid.Row="3"
                              Height="25"
                              Width="150"
                              VerticalAlignment="Center"
@@ -540,13 +724,13 @@
                              Grid.ColumnSpan="2"
                              Text="{Binding NewFailuremode.InspectionCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Effects Costs Total :"
-                               Grid.Row="3"
+                               Grid.Row="4"
                                Grid.Column="2"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
                                VerticalAlignment="Center" />
-                    <TextBox Grid.Row="3"
+                    <TextBox Grid.Row="4"
                              Grid.Column="3"
                              Height="25"
                              Width="150"
@@ -556,7 +740,7 @@
                              Text="{Binding NewFailuremode.EffectsCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Text="Failure Profile Total : "
-                               Grid.Row="4"
+                               Grid.Row="5"
                                Grid.Column="2"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
@@ -564,7 +748,7 @@
                                VerticalAlignment="Center"
                                Margin="5,0,0,0" />
                     <TextBox x:Name="txtFailueProfileTotal1"
-                             Grid.Row="4"
+                             Grid.Row="5"
                              Grid.Column="4"
                              Margin="5,0,0,0"
                              Height="25"
@@ -574,7 +758,7 @@
                              Text="{Binding NewFailuremode.FailureProfileTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Costs Total : "
                                Grid.Column="2"
-                               Grid.Row="5"
+                               Grid.Row="6"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
@@ -583,7 +767,7 @@
 
                     <TextBox x:Name="txtCostsTotal1"
                              Grid.Column="3"
-                             Grid.Row="5"
+                             Grid.Row="6"
                              Height="24"
                              Width="150"
                              VerticalAlignment="Center"
@@ -593,7 +777,7 @@
 
                     <TextBlock Text="Time Window : "
                                Grid.Column="2"
-                               Grid.Row="6"
+                               Grid.Row="7"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
@@ -602,7 +786,7 @@
 
                     <TextBox x:Name="txtFuctionName1"
                              Grid.Column="3"
-                             Grid.Row="6"
+                             Grid.Row="7"
                              Height="25"
                              Width="150"
                              VerticalAlignment="Center"
@@ -611,7 +795,7 @@
                              Text="{Binding NewFailuremode.TimeWindows,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Project Interval : "
                                Grid.Column="2"
-                               Grid.Row="7"
+                               Grid.Row="8"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
@@ -619,7 +803,7 @@
                                Margin="5,0,0,0" />
                     <TextBox x:Name="txtFuctionDescription1"
                              Grid.Column="3"
-                             Grid.Row="7"
+                             Grid.Row="8"
                              Height="25"
                              Width="150"
                              VerticalAlignment="Center"
@@ -628,14 +812,14 @@
                              Text="{Binding NewFailuremode.Projectinterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Project Life :"
                                Grid.Column="2"
-                               Grid.Row="8"
+                               Grid.Row="9"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
                                VerticalAlignment="Center"
                                Margin="5,0,0,0" />
                     <TextBox Grid.Column="3"
-                             Grid.Row="8"
+                             Grid.Row="9"
                              Height="25"
                              Width="150"
                              VerticalAlignment="Center"
@@ -644,21 +828,21 @@
                              Text="{Binding NewFailuremode.Projectlife,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Apply Inspection At Time Zero :"
                                Grid.Column="2"
-                               Grid.Row="9"
+                               Grid.Row="10"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
                                VerticalAlignment="Center"
                                Margin="5,0,0,0" />
                     <CheckBox Grid.Column="3"
-                              Grid.Row="9"
+                              Grid.Row="10"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Margin="5,0,0,0" />
                     <TextBlock Text="Disabled :"
                                Width="150"
                                Grid.Column="2"
-                               Grid.Row="10"
+                               Grid.Row="11"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
@@ -666,13 +850,13 @@
                                Margin="5,0,0,0" />
 
                     <CheckBox Grid.Column="3"
-                              Grid.Row="10"
+                              Grid.Row="11"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Margin="5,0,0,0" />
                     <TextBlock Text="Identifiers :"
                                Width="150"
-                               Grid.Row="10"
+                               Grid.Row="11"
                                HorizontalAlignment="Left"
                                FontFamily="{DynamicResource MainFontFamily}"
                                Foreground="White"
@@ -680,7 +864,7 @@
                                Margin="5,0,0,0" />
 
                     <ComboBox Grid.Column="1"
-                              Grid.Row="10"
+                              Grid.Row="11"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Margin="5,0,0,0" />
@@ -757,15 +941,6 @@
                                Foreground="White"
                                VerticalAlignment="Center"
                                Margin="5,0,0,0" />
-
-                    <!--<ComboBox Grid.Column="3"
-                              Grid.Row="10"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Center"
-                              Margin="5,0,0,0"
-                              DisplayMemberPath="Description"
-                              ItemsSource="{Binding FMTasks,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
-
                     <ListBox Grid.Column="1"
                              Grid.Row="9"
                              HorizontalAlignment="Left"
@@ -796,6 +971,45 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+
+                    <TextBlock Text="Effects :"
+                               Width="150"
+                               Grid.Row="10"
+                               HorizontalAlignment="Left"
+                               FontFamily="{DynamicResource MainFontFamily}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+                    <ListBox Grid.Column="1"
+                             Grid.Row="10"
+                             HorizontalAlignment="Left"
+                             Width="150"
+                             Margin="5,5,0,0"
+                             Background="Transparent"
+                             ItemsSource="{Binding EffectColl,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              Margin="5,0,0,0"
+                                              IsChecked="{Binding IsCheckedEffect}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               Foreground="White"
+                                               Text="{Binding Name}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <StackPanel Grid.Row="12"
                                 Grid.ColumnSpan="4"
                                 Orientation="Horizontal"
@@ -820,7 +1034,7 @@
                 <Grid x:Name="CreateFunctionFailure"
                       Margin="10"
                       Grid.Row="1"
-                      Visibility="Collapsed">
+                      Visibility="Visible">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130" />
                         <ColumnDefinition Width="*" />
@@ -1091,7 +1305,9 @@
                               Grid.Row="7"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Margin="10,15,0,10" />
+                              Margin="10,15,0,10"
+                              IsChecked="{Binding IsCheckedFunctionFailureSolve,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              Command="{Binding CheckFuntionFailure}"/>
 
                     <StackPanel Grid.Row="9"
                                 Grid.ColumnSpan="4"
