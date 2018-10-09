@@ -183,12 +183,12 @@ namespace WeibullSolverLibrary.Common_Code
             foreach (var FF in FunctionalFailures.Values)
             {
                 FF.Solve();
-                correctiveCostsTotal += FF.correctiveCostsTotal;
-                plannedCostsTotal += FF.plannedCostsTotal;
-                inspectionCostsTotal += FF.inspectionCostsTotal;
-                effectsCostsTotal += FF.effectsCostsTotal;
+                correctiveCostsTotal += FF. CorrectiveCostsTotal;
+                plannedCostsTotal += FF.PlannedCostsTotal;
+                inspectionCostsTotal += FF.InspectionCostsTotal;
+                effectsCostsTotal += FF.EffectsCostsTotal;
                 FailureProfileTotal += FF.FailureProfileTotal;
-                costsTotal += FF.costsTotal;
+                costsTotal += FF.CostsTotal;
                 correctiveCosts = Utilities.AddArrays(correctiveCosts, FF.correctiveCosts);
                 plannedCosts = Utilities.AddArrays(plannedCosts, FF.plannedCosts);
                 inspectionCosts = Utilities.AddArrays(inspectionCosts, FF.inspectionCosts);
@@ -199,7 +199,7 @@ namespace WeibullSolverLibrary.Common_Code
         }
     }
 
-    public class FunctionalFailure
+    public class FunctionalFailure : BaseHandler1
     {
         //Arrays to be returned by the solver
         public double?[] correctiveCosts;
@@ -209,16 +209,102 @@ namespace WeibullSolverLibrary.Common_Code
         public double?[] FailureProfile;
 
         //Totals to be returned by the solver
-        public double correctiveCostsTotal;
-        public double plannedCostsTotal;
-        public double inspectionCostsTotal;
-        public double effectsCostsTotal;
-        public double FailureProfileTotal;
-        public double costsTotal;
+         double correctiveCostsTotal;
+         double plannedCostsTotal;
+         double inspectionCostsTotal;
+         double effectsCostsTotal;
+         double failureProfileTotal;
+         double costsTotal;
 
         public string FunctionName { get; set; }
         public string FunctionDescription { get; set; }
         public bool Disabled { get; set; } = true;
+
+        public double CorrectiveCostsTotal
+        {
+            get
+            {
+                return correctiveCostsTotal;
+            }
+
+            set
+            {
+                correctiveCostsTotal = value;
+                NotifyPropertyChanged("CorrectiveCostsTotal");
+                
+            }
+        }
+
+        public double PlannedCostsTotal
+        {
+            get
+            {
+                return plannedCostsTotal;
+            }
+
+            set
+            {
+                plannedCostsTotal = value;
+                NotifyPropertyChanged("PlannedCostsTotal");
+            }
+        }
+
+        public double InspectionCostsTotal
+        {
+            get
+            {
+                return inspectionCostsTotal;
+            }
+
+            set
+            {
+                inspectionCostsTotal = value;
+                NotifyPropertyChanged("InspectionCostsTotal");
+            }
+        }
+
+        public double EffectsCostsTotal
+        {
+            get
+            {
+                return effectsCostsTotal;
+            }
+
+            set
+            {
+                effectsCostsTotal = value;
+                NotifyPropertyChanged("EffectsCostsTotal");
+            }
+        }
+
+        public double FailureProfileTotal
+        {
+            get
+            {
+                return failureProfileTotal;
+            }
+
+            set
+            {
+                failureProfileTotal = value;
+                NotifyPropertyChanged("FailureProfileTotal");
+            }
+        }
+
+        public double CostsTotal
+        {
+            get
+            {
+                return costsTotal;
+            }
+
+            set
+            {
+                costsTotal = value;
+                NotifyPropertyChanged("CostsTotal");
+            }
+        }
+
         public List<int> Identifiers = new List<int>();
         public Dictionary<string, Failuremode> Failuremodes = new Dictionary<string, Failuremode>();
         public bool Solve()
@@ -226,12 +312,12 @@ namespace WeibullSolverLibrary.Common_Code
             foreach (var FM in Failuremodes.Values)
             {
                 FM.Solve();
-                correctiveCostsTotal += FM.CorrectiveCostsTotal;
-                plannedCostsTotal += FM.PlannedCostsTotal;
-                inspectionCostsTotal += FM.InspectionCostsTotal;
-                effectsCostsTotal += FM.EffectsCostsTotal;
+                CorrectiveCostsTotal += FM.CorrectiveCostsTotal;
+                PlannedCostsTotal += FM.PlannedCostsTotal;
+                InspectionCostsTotal += FM.InspectionCostsTotal;
+                EffectsCostsTotal += FM.EffectsCostsTotal;
                 FailureProfileTotal += FM.FailureProfileTotal;
-                costsTotal += FM.CostsTotal;
+                CostsTotal += FM.CostsTotal;
                 correctiveCosts = Utilities.AddArrays(correctiveCosts, FM.correctiveCosts);
                 plannedCosts = Utilities.AddArrays(plannedCosts, FM.plannedCosts);
                 inspectionCosts = Utilities.AddArrays(inspectionCosts, FM.inspectionCosts);
@@ -247,6 +333,7 @@ namespace WeibullSolverLibrary.Common_Code
         string component;
         string what;
         string due_To;
+        bool isCheckedFailuremode;
         public string Component
         {
             get
@@ -442,6 +529,20 @@ namespace WeibullSolverLibrary.Common_Code
             {
                 costsTotal = value;
                 NotifyPropertyChanged("CostsTotal");
+            }
+        }
+
+        public bool IsCheckedFailuremode
+        {
+            get
+            {
+                return isCheckedFailuremode;
+            }
+
+            set
+            {
+                isCheckedFailuremode = value;
+                NotifyPropertyChanged("IsCheckedFailuremode");
             }
         }
 
@@ -1005,7 +1106,7 @@ namespace WeibullSolverLibrary.Common_Code
     }
 
 
-    public class FMTask
+    public class FMTask : BaseHandler1
     {
         public string Description { get; set; } //Stores the Description of the task
         public bool Disabled { get; set; } = false; //Is the task enabled or not
@@ -1026,14 +1127,48 @@ namespace WeibullSolverLibrary.Common_Code
         public double?[] HFPlannedCosts { get; set; }
         public double?[] AdjustedHFPlannedCosts { get; set; }
         public double?[] PDFPlannedCosts { get; set; }
-        public bool IsCheckedPlannedTasks { get; set; }
-        public bool IsCheckedInspectionTasks { get; set; }
+
+        bool isCheckedPlannedTasks;
+
+        bool isCheckedInspectionTasks;
+
+        
+
+        public bool IsCheckedPlannedTasks
+        {
+            get
+            {
+                return isCheckedPlannedTasks;
+            }
+
+            set
+            {
+                isCheckedPlannedTasks = value;
+                NotifyPropertyChanged("IsCheckedPlannedTasks");
+            }
+        }
+
+        public bool IsCheckedInspectionTasks
+        {
+            get
+            {
+                return isCheckedInspectionTasks;
+            }
+
+            set
+            {
+                isCheckedInspectionTasks = value;
+                NotifyPropertyChanged("IsCheckedInspectionTasks");
+            }
+        }
+        
+
         //public bool OfflineWork { get; set; } 
 
         public List<Resource> Resources = new List<Resource>();
     }
 
-    public class Effect
+    public class Effect : BaseHandler1
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -1046,6 +1181,21 @@ namespace WeibullSolverLibrary.Common_Code
         public double?[] Occurances { get; set; }
         public double?[] Costs { get; set; }
         public bool IsCheckedEffect { get; set; } = false;
+
+        bool isEffect;
+        public bool IsEffect
+        {
+            get
+            {
+                return isEffect;
+            }
+
+            set
+            {
+                isEffect = value;
+                NotifyPropertyChanged("IsEffect");
+            }
+        }
     }
 
     public class Resource

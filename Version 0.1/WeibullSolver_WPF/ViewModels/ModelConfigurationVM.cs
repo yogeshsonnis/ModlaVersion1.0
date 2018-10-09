@@ -44,6 +44,8 @@ namespace WeibullSolver_WPF.ViewModels
 
         public RelayCommand SaveEffectCommand { get; set; }
 
+        public RelayCommand ClearButtonCommand { get; set; }
+
         public ObservableCollection<FMTask> FMTasks
         {
             get
@@ -242,6 +244,7 @@ namespace WeibullSolver_WPF.ViewModels
             SaveEffectCommand = new RelayCommand(OnSaveEffect);
             SaveFailuremodeCommand = new RelayCommand(OnSaveFailuremode);
             SaveFunctionFailure = new RelayCommand(OnSaveFunctionFailure);
+            ClearButtonCommand = new RelayCommand(ClearData);
             CheckSolve = new RelayCommand(OnCheckSolve);
             CheckFuntionFailure = new RelayCommand(OnFuntionFailure);
         }
@@ -252,7 +255,8 @@ namespace WeibullSolver_WPF.ViewModels
             var v = NewFMTask;
             FMTasks.Add(NewFMTask);
             MessageBox.Show("New FM Task is created successfully");
-            NewFMTask = new FMTask();
+            ClearData();
+            
         }
         #endregion
 
@@ -262,7 +266,7 @@ namespace WeibullSolver_WPF.ViewModels
             var e = NewEffect;
             EffectColl.Add(NewEffect);
             MessageBox.Show("Effect created successfully");
-            NewEffect = new Effect();
+            ClearData();
         }
         #endregion
 
@@ -285,7 +289,25 @@ namespace WeibullSolver_WPF.ViewModels
             var v = NewFailuremode;
             FailureModeColl.Add(NewFailuremode);
             MessageBox.Show("Failuremode is created successfully");
+            ClearData();
+        }
+
+        private void ClearData()
+        { 
+            NewFMTask = new FMTask();
+            NewEffect = new Effect();
             NewFailuremode = new Failuremode();
+            NewFunctionFailure = new FunctionalFailure();
+            if (PlannedTasks!=null && PlannedTasks.Count>0)
+                PlannedTasks.ToList().ForEach(x => x.IsCheckedPlannedTasks = false);
+            if (InspectionTasks != null && InspectionTasks.Count > 0)
+                InspectionTasks.ToList().ForEach(x => x.IsCheckedInspectionTasks = false);
+            if (EffectColl != null && EffectColl.Count > 0)
+                EffectColl.ToList().ForEach(x => x.IsEffect = false);
+            if (FailureModeColl != null && FailureModeColl.Count > 0)
+                FailureModeColl.ToList().ForEach(x => x.IsCheckedFailuremode = false);
+            IsCheckedSolve = false;
+            IsCheckedFunctionFailureSolve = false;
         }
 
         private void OnCheckSolve()
@@ -316,14 +338,15 @@ namespace WeibullSolver_WPF.ViewModels
         #region FunctionFailure
         private void OnSaveFunctionFailure()
         {
-            NewFunctionFailure.Failuremodes = new Dictionary<string, Failuremode>();
-            int i = 1;
-            foreach(var mode in FailureModeColl)
-            {
-                NewFunctionFailure.Failuremodes.Add(String.Concat("Fun", i), mode);
-                i++;
-            }
+            //NewFunctionFailure.Failuremodes = new Dictionary<string, Failuremode>();
+            //int i = 1;
+            //foreach(var mode in FailureModeColl)
+            //{
+            //    NewFunctionFailure.Failuremodes.Add(String.Concat("Fun", i), mode);
+            //    i++;
+            //}
             MessageBox.Show("Function Failure is created successfully");
+            ClearData();
         }
 
         private void OnFuntionFailure()
