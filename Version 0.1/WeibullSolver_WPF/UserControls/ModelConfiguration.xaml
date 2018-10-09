@@ -74,7 +74,7 @@
                 </Grid.RowDefinitions>
                 <Border Background="#353535" />
                 <Grid x:Name="CreateFMTAsk"
-                      Visibility="Collapsed"
+                      Visibility="Visible"
                       Grid.Row="1"
                       VerticalAlignment="Stretch"
                       Margin="0,10,0,0"
@@ -319,7 +319,7 @@
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Margin="10,0,0,0"
-                                 Text="{Binding NewFMTask.EffectCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                 Text="{Binding NewFMTask.EffectCost,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
                         
                         
                         
@@ -433,7 +433,7 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
-                             Text="{Binding NewEffect.EffectCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                             Text="{Binding NewEffect.EffectCost,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
                     <TextBlock Text="Effect Probability :"
                                Grid.Column="2"
                                Width="100"
@@ -450,7 +450,7 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
-                             Text="{Binding NewEffect.EffectProbability,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                             Text="{Binding NewEffect.EffectProbability,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
 
 
                     <TextBlock Text="Apply To Corrective : "
@@ -640,7 +640,7 @@
                              Margin="5,0,0,0"
                              Text="{Binding NewFailuremode.Gamma,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
 
-                    <TextBlock Text="Intialize :"
+                    <TextBlock Text="Initialage :"
                                Grid.Row="6"
                                Width="120"
                                HorizontalAlignment="Left"
@@ -688,7 +688,8 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
-                             Text="{Binding NewFailuremode.CorrectiveCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                             Text="{Binding NewFailuremode.CorrectiveCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="True"/>
                     <TextBlock Text="Planned Costs Total :"
                                Grid.Column="2"
                                Grid.Row="2"
@@ -705,6 +706,7 @@
                              VerticalAlignment="Top"
                              HorizontalAlignment="Left"
                              Margin="5,10,0,0"
+                             IsReadOnly="True"
                              Text="{Binding NewFailuremode.PlannedCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Inspection Costs Total :"
                                Grid.Row="3"
@@ -721,6 +723,7 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
                              Margin="5,10,0,0"
+                             IsReadOnly="True"
                              Grid.ColumnSpan="2"
                              Text="{Binding NewFailuremode.InspectionCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Effects Costs Total :"
@@ -736,6 +739,7 @@
                              Width="150"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
+                             IsReadOnly="True"
                              Margin="5,0,0,0"
                              Text="{Binding NewFailuremode.EffectsCostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
 
@@ -754,6 +758,7 @@
                              Height="25"
                              Width="150"
                              VerticalAlignment="Center"
+                             IsReadOnly="True"
                              HorizontalAlignment="Left"
                              Text="{Binding NewFailuremode.FailureProfileTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Costs Total : "
@@ -771,6 +776,7 @@
                              Height="24"
                              Width="150"
                              VerticalAlignment="Center"
+                             IsReadOnly="True"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
                              Text="{Binding NewFailuremode.CostsTotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
@@ -790,6 +796,7 @@
                              Height="25"
                              Width="150"
                              VerticalAlignment="Center"
+                             IsReadOnly="True"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
                              Text="{Binding NewFailuremode.TimeWindows,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
@@ -807,6 +814,7 @@
                              Height="25"
                              Width="150"
                              VerticalAlignment="Center"
+                             IsReadOnly="True"
                              HorizontalAlignment="Left"
                              Margin="5,0,0,0"
                              Text="{Binding NewFailuremode.Projectinterval,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
@@ -824,6 +832,7 @@
                              Width="150"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
+                             IsReadOnly="True"
                              Margin="5,0,0,0"
                              Text="{Binding NewFailuremode.Projectlife,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Apply Inspection At Time Zero :"
@@ -1034,7 +1043,7 @@
                 <Grid x:Name="CreateFunctionFailure"
                       Margin="10"
                       Grid.Row="1"
-                      Visibility="Visible">
+                      Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130" />
                         <ColumnDefinition Width="*" />
