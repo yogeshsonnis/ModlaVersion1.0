@@ -16,16 +16,25 @@ namespace WeibullSolver_WPF.ViewModels
         Effect newEffect;
         Failuremode newFailuremode;
         FunctionalFailure newFunctionFailure;
+        Function newFunction;
+        Location newLocation;
+        Model newModel;
         ObservableCollection<FMTask> fMTasks;
         ObservableCollection<Failuremode> failureModeColl;
         ObservableCollection<FunctionalFailure> functionFailureColl;
+        ObservableCollection<Function> functionColl;
+        ObservableCollection<Location> locationColl;
+        ObservableCollection<Model> modelColl;
         ObservableCollection<FMTask> plannedTasks;
         ObservableCollection<FMTask> inspectionTasks;
         ObservableCollection<Effect> effectColl;
         FMTask isSelectedCorrectiveTask;
         bool isCheckedSolve;
-        bool isCheckedFunctionFailureSolve;
         bool isCheckedFailureMode;
+        bool isCheckedFunctionFailureSolve;
+        bool isCheckedFunctionSolve;
+        bool isCheckedLocationSolve;
+        bool isCheckedModelSolve;
         public FMTask NewFMTask
         {
             get { return newFMTask; }
@@ -36,11 +45,23 @@ namespace WeibullSolver_WPF.ViewModels
 
         public RelayCommand SaveFailuremodeCommand { get; set; }
 
-        public RelayCommand SaveFunctionFailure { get; set; }
+        public RelayCommand SaveFunctionFailureCommand { get; set; }
+
+        public RelayCommand SaveCreateFunctionCommand { get; set; }
+
+        public RelayCommand SaveLocationCommand { get; set; }
+
+        public RelayCommand SaveModelCommand { get; set; }
 
         public RelayCommand CheckSolve { get; set; }
 
-        public RelayCommand CheckFuntionFailure { get; set; }
+        public RelayCommand CheckFuntionFailureSolve { get; set; }
+
+        public RelayCommand CheckFuntionSolve { get; set; }
+
+        public RelayCommand CheckLocationSolve { get; set; }
+
+        public RelayCommand CheckModelSolve { get; set; }
 
         public RelayCommand SaveEffectCommand { get; set; }
 
@@ -231,24 +252,167 @@ namespace WeibullSolver_WPF.ViewModels
             }
         }
 
+        public ObservableCollection<Function> FunctionColl
+        {
+            get
+            {
+                return functionColl;
+            }
+
+            set
+            {
+                functionColl = value;
+                NotifyPropertyChanged("FunctionColl");
+            }
+        }
+
+        public Function NewFunction
+        {
+            get
+            {
+                return newFunction;
+            }
+
+            set
+            {
+                newFunction = value;
+                NotifyPropertyChanged("NewFunction");
+            }
+        }
+
+        public Location NewLocation
+        {
+            get
+            {
+                return newLocation;
+            }
+
+            set
+            {
+                newLocation = value;
+                NotifyPropertyChanged("NewLocation");
+            }
+        }
+
+        public ObservableCollection<Location> LocationColl
+        {
+            get
+            {
+                return locationColl;
+            }
+
+            set
+            {
+                locationColl = value;
+                NotifyPropertyChanged("LocationColl");
+            }
+        }
+
+        public bool IsCheckedFunctionSolve
+        {
+            get
+            {
+                return isCheckedFunctionSolve;
+            }
+
+            set
+            {
+                isCheckedFunctionSolve = value;
+                NotifyPropertyChanged("IsCheckedFunctionSolve");
+            }
+        }
+
+        public bool IsCheckedLocationSolve
+        {
+            get
+            {
+                return isCheckedLocationSolve;
+            }
+
+            set
+            {
+                isCheckedLocationSolve = value;
+                NotifyPropertyChanged("IsCheckedLocationSolve");
+            }
+        }
+
+        public Model NewModel
+        {
+            get
+            {
+                return newModel;
+            }
+
+            set
+            {
+                newModel = value;
+                NotifyPropertyChanged("NewModel");
+            }
+        }
+
+        public ObservableCollection<Model> ModelColl
+        {
+            get
+            {
+                return modelColl;
+            }
+
+            set
+            {
+                modelColl = value;
+                NotifyPropertyChanged("ModelColl");
+            }
+        }
+
+        public bool IsCheckedModelSolve
+        {
+            get
+            {
+                return isCheckedModelSolve;
+            }
+
+            set
+            {
+                isCheckedModelSolve = value;
+                NotifyPropertyChanged("IsCheckedModelSolve");
+            }
+        }
+
+        #region Constructor
         public ModelConfigurationVM()
         {
             NewFMTask = new FMTask();
             NewEffect = new Effect();
             NewFailuremode = new Failuremode();
             NewFunctionFailure = new FunctionalFailure();
+            NewFunction = new Function();
+            NewLocation = new Location();
+            NewModel = new Model();
             FMTasks = new ObservableCollection<FMTask>();
             EffectColl = new ObservableCollection<Effect>();
             FailureModeColl = new ObservableCollection<Failuremode>();
+            FunctionFailureColl = new ObservableCollection<FunctionalFailure>();
+            FunctionColl = new ObservableCollection<Function>();
+            LocationColl = new ObservableCollection<Location>();
+            ModelColl = new ObservableCollection<Model>();
             SaveFMTaskCommand = new RelayCommand(OnSaveFMTask);
             SaveEffectCommand = new RelayCommand(OnSaveEffect);
             SaveFailuremodeCommand = new RelayCommand(OnSaveFailuremode);
-            SaveFunctionFailure = new RelayCommand(OnSaveFunctionFailure);
+            SaveFunctionFailureCommand = new RelayCommand(OnSaveFunctionFailure);
+            SaveCreateFunctionCommand = new RelayCommand(OnSaveCreateFunction);
+            SaveLocationCommand = new RelayCommand(OnSaveLocation);
+            SaveModelCommand = new RelayCommand(OnSaveModel);
             ClearButtonCommand = new RelayCommand(ClearData);
             CheckSolve = new RelayCommand(OnCheckSolve);
-            CheckFuntionFailure = new RelayCommand(OnFuntionFailure);
+            CheckFuntionFailureSolve = new RelayCommand(OnFuntionFailureSolve);
+            CheckFuntionSolve = new RelayCommand(OnFunctionSolve);
+            CheckLocationSolve = new RelayCommand(OnLoacationSolve);
+            CheckModelSolve = new RelayCommand(OnModelSolve);
         }
-        
+
+       
+        #endregion
+
         #region FMTAsk
         private void OnSaveFMTask()
         {
@@ -292,24 +456,6 @@ namespace WeibullSolver_WPF.ViewModels
             ClearData();
         }
 
-        private void ClearData()
-        { 
-            NewFMTask = new FMTask();
-            NewEffect = new Effect();
-            NewFailuremode = new Failuremode();
-            NewFunctionFailure = new FunctionalFailure();
-            if (PlannedTasks!=null && PlannedTasks.Count>0)
-                PlannedTasks.ToList().ForEach(x => x.IsCheckedPlannedTasks = false);
-            if (InspectionTasks != null && InspectionTasks.Count > 0)
-                InspectionTasks.ToList().ForEach(x => x.IsCheckedInspectionTasks = false);
-            if (EffectColl != null && EffectColl.Count > 0)
-                EffectColl.ToList().ForEach(x => x.IsEffect = false);
-            if (FailureModeColl != null && FailureModeColl.Count > 0)
-                FailureModeColl.ToList().ForEach(x => x.IsCheckedFailuremode = false);
-            IsCheckedSolve = false;
-            IsCheckedFunctionFailureSolve = false;
-        }
-
         private void OnCheckSolve()
         {
             if (IsCheckedSolve == true)
@@ -326,10 +472,9 @@ namespace WeibullSolver_WPF.ViewModels
                 NewFailuremode.CorrectiveTask = IsSelectedCorrectiveTask;
                 NewFailuremode.PlannedTasks = PlannedTasks.Where(x => x.IsCheckedPlannedTasks == true).ToList();
                 NewFailuremode.InspectionTasks = InspectionTasks.Where(x => x.IsCheckedInspectionTasks == true).ToList();
-               // NewFailuremode.Effects = EffectColl.ToList();
-               NewFailuremode.Effects = EffectColl.Where(x => x.IsCheckedEffect == true).ToList();
+               //NewFailuremode.Effects = EffectColl.ToList();
+                NewFailuremode.Effects = EffectColl.Where(x => x.IsCheckedEffect == true).ToList();
                 NewFailuremode.Solve();
-
             }
         }
 
@@ -345,11 +490,13 @@ namespace WeibullSolver_WPF.ViewModels
             //    NewFunctionFailure.Failuremodes.Add(String.Concat("Fun", i), mode);
             //    i++;
             //}
+            var v = NewFunctionFailure;
+            FunctionFailureColl.Add(NewFunctionFailure);
             MessageBox.Show("Function Failure is created successfully");
             ClearData();
         }
 
-        private void OnFuntionFailure()
+        private void OnFuntionFailureSolve()
         {
             if (IsCheckedFunctionFailureSolve == true)
             {
@@ -357,13 +504,122 @@ namespace WeibullSolver_WPF.ViewModels
                 int i = 1;
                 foreach (var mode in FailureModeColl)
                 {
-                    NewFunctionFailure.Failuremodes.Add(String.Concat("Fun",i), mode);
+                    NewFunctionFailure.Failuremodes.Add(String.Concat("Mode",i), mode);
                     i++;
                 }
                 NewFunctionFailure.Solve();
             }
         }
         #endregion
+
+        #region Create Function
+        private void OnFunctionSolve()
+        {
+            if(IsCheckedFunctionSolve == true)
+            {
+                NewFunction.FunctionalFailures = new Dictionary<string, FunctionalFailure>();
+                int i = 1;
+                foreach(var funFailure in FunctionFailureColl)
+                {
+                    NewFunction.FunctionalFailures.Add(String.Concat("Fun",i), funFailure);
+                    i++;
+                }
+                NewFunction.Solve();
+            }
+        }
+
+        private void OnSaveCreateFunction()
+        {
+            var v = NewFunction;
+            FunctionColl.Add(NewFunction);
+            MessageBox.Show("Function is created successfully");
+            ClearData();
+        }
+
+        #endregion
+
+        #region Location
+        private void OnLoacationSolve()
+        {
+            if (IsCheckedLocationSolve == true)
+            {
+                NewLocation.Locations = new Dictionary<string, Function>();
+                int i = 1;
+                foreach (var fun in FunctionColl)
+                {
+                    NewLocation.Locations.Add(String.Concat("Fun", i), fun);
+                    i++;
+                }
+                NewLocation.Solve();
+            }
+        }
+
+        private void OnSaveLocation()
+        {
+            var v = NewLocation;
+            LocationColl.Add(NewLocation);
+            MessageBox.Show("Location is created successfully");
+            ClearData();
+        }
+
+        #endregion
+
+        #region Model
+        private void OnSaveModel()
+        {
+            var v = NewModel;
+            ModelColl.Add(NewModel);
+            MessageBox.Show("Model is created successfully");
+            ClearData();
+        }
+
+        private void OnModelSolve()
+        {
+            if (IsCheckedModelSolve == true)
+            {
+                NewModel.Locations = new Dictionary<string, Location>();
+                int i = 1;
+                foreach (var loc in LocationColl)
+                {
+                    NewModel.Locations.Add(String.Concat("Fun", i), loc);
+                    i++;
+                }
+                NewModel.Solve();
+            }
+        }
+        #endregion
+
+
+        private void ClearData()
+        {
+            NewFMTask = new FMTask();
+            NewEffect = new Effect();
+            NewFailuremode = new Failuremode();
+            NewFunctionFailure = new FunctionalFailure();
+            NewFunction = new Function();
+            NewLocation = new Location();
+            NewModel = new Model();
+            if (PlannedTasks != null && PlannedTasks.Count > 0)
+                PlannedTasks.ToList().ForEach(x => x.IsCheckedPlannedTasks = false);
+            if (InspectionTasks != null && InspectionTasks.Count > 0)
+                InspectionTasks.ToList().ForEach(x => x.IsCheckedInspectionTasks = false);
+            if (EffectColl != null && EffectColl.Count > 0)
+                EffectColl.ToList().ForEach(x => x.IsEffect = false);
+            if (FailureModeColl != null && FailureModeColl.Count > 0)
+                FailureModeColl.ToList().ForEach(x => x.IsCheckedFailuremode = false);
+            if (FunctionFailureColl != null && FunctionFailureColl.Count > 0)
+                FunctionFailureColl.ToList().ForEach(x => x.IsCheckedFunctionalFailure = false);
+            if (FunctionColl !=null && FunctionColl.Count>0)
+                FunctionColl.ToList().ForEach(x => x.IsCheckFunction = false);
+            if (LocationColl != null && LocationColl.Count > 0)
+                LocationColl.ToList().ForEach(x => x.IsCheckLocation = false);
+            IsCheckedSolve = false;
+            IsCheckedFunctionFailureSolve = false;
+            IsCheckedFunctionSolve = false;
+            IsCheckedLocationSolve = false;
+            IsCheckedModelSolve = false;
+        }
+
 
     }
 }

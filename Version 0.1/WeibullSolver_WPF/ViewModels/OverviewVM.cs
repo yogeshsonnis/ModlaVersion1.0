@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WeibullSolver_WPF.HelperClasses;
-using WeibullSolver_WPF.Model;
+using WeibullSolver_WPF.Models;
 using WeibullSolver_WPF.UserControls;
 using WeibullSolverLibrary.Common_Code;
-using static WeibullSolver_WPF.Model.Decisions;
+using static WeibullSolver_WPF.Models.Decisions;
 
 namespace WeibullSolver_WPF.ViewModels
 {

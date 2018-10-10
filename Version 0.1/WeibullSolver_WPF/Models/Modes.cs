@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WeibullSolver_WPF.HelperClasses;
 
-namespace WeibullSolver_WPF.Model
+namespace WeibullSolver_WPF.Models
 {
     public class Modes : BaseHandler
     {

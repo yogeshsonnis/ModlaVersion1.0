@@ -13,8 +13,8 @@ namespace WeibullSolverLibrary.Common_Code
     /// 
     /// </summary>
     /// 
-    public class ProjectParameters: BaseHandler1
-    { 
+    public class ProjectParameters : BaseHandler1
+    {
         //Storage for Project Parameters
         string projectName;
         int projectinterval;
@@ -69,7 +69,7 @@ namespace WeibullSolverLibrary.Common_Code
     /// </summary>
 
 
-    public class Model
+    public class Model : BaseHandler1
     {
         //Arrays to be returned by the solver
         public double?[] correctiveCosts;
@@ -79,146 +79,15 @@ namespace WeibullSolverLibrary.Common_Code
         public double?[] FailureProfile;
 
         //Totals to be returned by the solver
-        public double correctiveCostsTotal;
-        public double plannedCostsTotal;
-        public double inspectionCostsTotal;
-        public double effectsCostsTotal;
-        public double FailureProfileTotal;
-        public double costsTotal;
+        double correctiveCostsTotal;
+        double plannedCostsTotal;
+        double inspectionCostsTotal;
+        double effectsCostsTotal;
+        double failureProfileTotal;
+        double costsTotal;
 
         public string ModelName { get; set; }
         public string ModelDescription { get; set; }
-        public Dictionary<string, Location> Locations = new Dictionary<string, Location>();
-        public Dictionary<string, Decision> Decisions = new Dictionary<string, Decision>();
-        public bool Solve()
-        {
-            foreach (var L in Locations.Values)
-            {
-                L.Solve();
-                correctiveCostsTotal += L.correctiveCostsTotal;
-                plannedCostsTotal += L.plannedCostsTotal;
-                inspectionCostsTotal += L.inspectionCostsTotal;
-                effectsCostsTotal += L.effectsCostsTotal;
-                FailureProfileTotal += L.FailureProfileTotal;
-                costsTotal += L.costsTotal;
-                correctiveCosts = Utilities.AddArrays(correctiveCosts, L.correctiveCosts);
-                plannedCosts = Utilities.AddArrays(plannedCosts, L.plannedCosts);
-                inspectionCosts = Utilities.AddArrays(inspectionCosts, L.inspectionCosts);
-                effectsCosts = Utilities.AddArrays(effectsCosts, L.effectsCosts);
-                FailureProfile = Utilities.AddArrays(FailureProfile, L.FailureProfile);
-            }
-            return true;
-        }
-    }
-
-    public class Location
-    {
-        //Arrays to be returned by the solver
-        public double?[] correctiveCosts;
-        public double?[] plannedCosts;
-        public double?[] inspectionCosts;
-        public double?[] effectsCosts;
-        public double?[] FailureProfile;
-
-        //Totals to be returned by the solver
-        public double correctiveCostsTotal;
-        public double plannedCostsTotal;
-        public double inspectionCostsTotal;
-        public double effectsCostsTotal;
-        public double FailureProfileTotal;
-        public double costsTotal;
-
-        public string LocationName { get; set; }
-        public string LocationDescription { get; set; }
-        public bool Disabled { get; set; } = true;
-        public List<int> Identifiers = new List<int>();
-        public Dictionary<string, Function> Functions = new Dictionary<string, Function>();
-        public bool Solve()
-        {
-            foreach (var F in Functions.Values)
-            {
-                F.Solve();
-                correctiveCostsTotal += F.correctiveCostsTotal;
-                plannedCostsTotal += F.plannedCostsTotal;
-                inspectionCostsTotal += F.inspectionCostsTotal;
-                effectsCostsTotal += F.effectsCostsTotal;
-                FailureProfileTotal += F.FailureProfileTotal;
-                costsTotal += F.costsTotal;
-                correctiveCosts = Utilities.AddArrays(correctiveCosts, F.correctiveCosts);
-                plannedCosts = Utilities.AddArrays(plannedCosts, F.plannedCosts);
-                inspectionCosts = Utilities.AddArrays(inspectionCosts, F.inspectionCosts);
-                effectsCosts = Utilities.AddArrays(effectsCosts, F.effectsCosts);
-                FailureProfile = Utilities.AddArrays(FailureProfile, F.FailureProfile);
-            }
-            return true;
-        }
-    }
-
-    public class Function
-    {
-        //Arrays to be returned by the solver
-        public double?[] correctiveCosts;
-        public double?[] plannedCosts;
-        public double?[] inspectionCosts;
-
-
-        public double?[] effectsCosts;
-        public double?[] FailureProfile;
-
-        //Totals to be returned by the solver
-        public double correctiveCostsTotal;
-        public double plannedCostsTotal;
-        public double inspectionCostsTotal;
-        public double effectsCostsTotal;
-        public double FailureProfileTotal;
-        public double costsTotal;
-
-        public string FunctionName { get; set; }
-        public string FunctionDescription { get; set; }
-        public bool Disabled { get; set; } = true;
-        public List<int> Identifiers = new List<int>();
-        public Dictionary<string, FunctionalFailure> FunctionalFailures = new Dictionary<string, FunctionalFailure>();
-        public bool Solve()
-        {
-            foreach (var FF in FunctionalFailures.Values)
-            {
-                FF.Solve();
-                correctiveCostsTotal += FF. CorrectiveCostsTotal;
-                plannedCostsTotal += FF.PlannedCostsTotal;
-                inspectionCostsTotal += FF.InspectionCostsTotal;
-                effectsCostsTotal += FF.EffectsCostsTotal;
-                FailureProfileTotal += FF.FailureProfileTotal;
-                costsTotal += FF.CostsTotal;
-                correctiveCosts = Utilities.AddArrays(correctiveCosts, FF.correctiveCosts);
-                plannedCosts = Utilities.AddArrays(plannedCosts, FF.plannedCosts);
-                inspectionCosts = Utilities.AddArrays(inspectionCosts, FF.inspectionCosts);
-                effectsCosts = Utilities.AddArrays(effectsCosts, FF.effectsCosts);
-                FailureProfile = Utilities.AddArrays(FailureProfile, FF.FailureProfile);
-            }
-            return true;
-        }
-    }
-
-    public class FunctionalFailure : BaseHandler1
-    {
-        //Arrays to be returned by the solver
-        public double?[] correctiveCosts;
-        public double?[] plannedCosts;
-        public double?[] inspectionCosts;
-        public double?[] effectsCosts;
-        public double?[] FailureProfile;
-
-        //Totals to be returned by the solver
-         double correctiveCostsTotal;
-         double plannedCostsTotal;
-         double inspectionCostsTotal;
-         double effectsCostsTotal;
-         double failureProfileTotal;
-         double costsTotal;
-
-        public string FunctionName { get; set; }
-        public string FunctionDescription { get; set; }
-        public bool Disabled { get; set; } = true;
 
         public double CorrectiveCostsTotal
         {
@@ -231,7 +100,135 @@ namespace WeibullSolverLibrary.Common_Code
             {
                 correctiveCostsTotal = value;
                 NotifyPropertyChanged("CorrectiveCostsTotal");
-                
+            }
+        }
+
+        public double PlannedCostsTotal
+        {
+            get
+            {
+                return plannedCostsTotal;
+            }
+
+            set
+            {
+                plannedCostsTotal = value;
+                NotifyPropertyChanged("PlannedCostsTotal");
+            }
+        }
+
+        public double InspectionCostsTotal
+        {
+            get
+            {
+                return inspectionCostsTotal;
+            }
+
+            set
+            {
+                inspectionCostsTotal = value;
+                NotifyPropertyChanged("InspectionCostsTotal");
+            }
+        }
+
+        public double EffectsCostsTotal
+        {
+            get
+            {
+                return effectsCostsTotal;
+            }
+
+            set
+            {
+                effectsCostsTotal = value;
+                NotifyPropertyChanged("EffectsCostsTotal");
+            }
+        }
+
+        public double FailureProfileTotal
+        {
+            get
+            {
+                return failureProfileTotal;
+            }
+
+            set
+            {
+                failureProfileTotal = value;
+                NotifyPropertyChanged("EffectsCostsTotal");
+            }
+        }
+
+        public double CostsTotal
+        {
+            get
+            {
+                return costsTotal;
+            }
+
+            set
+            {
+                costsTotal = value;
+                NotifyPropertyChanged("CostsTotal");
+            }
+        }
+
+        public Dictionary<string, Location> Locations = new Dictionary<string, Location>();
+        public Dictionary<string, Decision> Decisions = new Dictionary<string, Decision>();
+        public bool Solve()
+        {
+            foreach (var L in Locations.Values)
+            {
+                L.Solve();
+                CorrectiveCostsTotal += L.CorrectiveCostsTotal;
+                PlannedCostsTotal += L.PlannedCostsTotal;
+                InspectionCostsTotal += L.InspectionCostsTotal;
+                EffectsCostsTotal += L.EffectsCostsTotal;
+                FailureProfileTotal += L.FailureProfileTotal;
+                CostsTotal += L.CostsTotal;
+                correctiveCosts = Utilities.AddArrays(correctiveCosts, L.correctiveCosts);
+                plannedCosts = Utilities.AddArrays(plannedCosts, L.plannedCosts);
+                inspectionCosts = Utilities.AddArrays(inspectionCosts, L.inspectionCosts);
+                effectsCosts = Utilities.AddArrays(effectsCosts, L.effectsCosts);
+                FailureProfile = Utilities.AddArrays(FailureProfile, L.FailureProfile);
+            }
+            return true;
+        }
+    }
+
+    public class Location : BaseHandler1
+    {
+        //Arrays to be returned by the solver
+        public double?[] correctiveCosts;
+        public double?[] plannedCosts;
+        public double?[] inspectionCosts;
+        public double?[] effectsCosts;
+        public double?[] FailureProfile;
+
+        //Totals to be returned by the solver
+        double correctiveCostsTotal;
+        double plannedCostsTotal;
+        double inspectionCostsTotal;
+        double effectsCostsTotal;
+        double failureProfileTotal;
+        double costsTotal;
+
+        public string LocationName { get; set; }
+        public string LocationDescription { get; set; }
+        public bool Disabled { get; set; } = true;
+
+        bool isCheckLocation;
+        public double CorrectiveCostsTotal
+        {
+            get
+            {
+                return correctiveCostsTotal;
+            }
+
+            set
+            {
+                correctiveCostsTotal = value;
+                NotifyPropertyChanged("CorrectiveCostsTotal");
             }
         }
 
@@ -302,6 +299,312 @@ namespace WeibullSolverLibrary.Common_Code
             {
                 costsTotal = value;
                 NotifyPropertyChanged("CostsTotal");
+            }
+        }
+
+        public bool IsCheckLocation
+        {
+            get
+            {
+                return isCheckLocation;
+            }
+
+            set
+            {
+                isCheckLocation = value;
+                NotifyPropertyChanged("IsCheckLocation");
+            }
+        }
+
+        public List<int> Identifiers = new List<int>();
+        public Dictionary<string, Function> Locations = new Dictionary<string, Function>();
+        public bool Solve()
+        {
+            foreach (var F in Locations.Values)
+            {
+                F.Solve();
+                CorrectiveCostsTotal += F.CorrectiveCostsTotal;
+                PlannedCostsTotal += F.PlannedCostsTotal;
+                InspectionCostsTotal += F.InspectionCostsTotal;
+                EffectsCostsTotal += F.EffectsCostsTotal;
+                FailureProfileTotal += F.FailureProfileTotal;
+                CostsTotal += F.CostsTotal;
+                correctiveCosts = Utilities.AddArrays(correctiveCosts, F.correctiveCosts);
+                plannedCosts = Utilities.AddArrays(plannedCosts, F.plannedCosts);
+                inspectionCosts = Utilities.AddArrays(inspectionCosts, F.inspectionCosts);
+                effectsCosts = Utilities.AddArrays(effectsCosts, F.effectsCosts);
+                FailureProfile = Utilities.AddArrays(FailureProfile, F.FailureProfile);
+            }
+            return true;
+        }
+    }
+
+    public class Function : BaseHandler1
+    {
+        //Arrays to be returned by the solver
+        public double?[] correctiveCosts;
+        public double?[] plannedCosts;
+        public double?[] inspectionCosts;
+
+
+        public double?[] effectsCosts;
+        public double?[] FailureProfile;
+
+        //Totals to be returned by the solver
+        double correctiveCostsTotal;
+        double plannedCostsTotal;
+        double inspectionCostsTotal;
+        double effectsCostsTotal;
+        double failureProfileTotal;
+        double costsTotal;
+
+        public string FunctionName { get; set; }
+        public string FunctionDescription { get; set; }
+        public bool Disabled { get; set; } = true;
+
+        bool isCheckFunction;
+
+        public double CorrectiveCostsTotal
+        {
+            get
+            {
+                return correctiveCostsTotal;
+            }
+
+            set
+            {
+                correctiveCostsTotal = value;
+                NotifyPropertyChanged("CorrectiveCostsTotal");
+            }
+        }
+
+        public double PlannedCostsTotal
+        {
+            get
+            {
+                return plannedCostsTotal;
+            }
+
+            set
+            {
+                plannedCostsTotal = value;
+                NotifyPropertyChanged("PlannedCostsTotal");
+            }
+        }
+
+        public double InspectionCostsTotal
+        {
+            get
+            {
+                return inspectionCostsTotal;
+            }
+
+            set
+            {
+                inspectionCostsTotal = value;
+                NotifyPropertyChanged("InspectionCostsTotal");
+            }
+        }
+
+        public double EffectsCostsTotal
+        {
+            get
+            {
+                return effectsCostsTotal;
+            }
+
+            set
+            {
+                effectsCostsTotal = value;
+                NotifyPropertyChanged("EffectsCostsTotal");
+            }
+        }
+
+        public double FailureProfileTotal
+        {
+            get
+            {
+                return failureProfileTotal;
+            }
+
+            set
+            {
+                failureProfileTotal = value;
+                NotifyPropertyChanged("FailureProfileTotal");
+            }
+        }
+
+        public double CostsTotal
+        {
+            get
+            {
+                return costsTotal;
+            }
+
+            set
+            {
+                costsTotal = value;
+                NotifyPropertyChanged("CostsTotal");
+            }
+        }
+
+        public bool IsCheckFunction
+        {
+            get
+            {
+                return isCheckFunction;
+            }
+
+            set
+            {
+                isCheckFunction = value;
+                NotifyPropertyChanged("IsCheckFunction");
+            }
+        }
+
+        public List<int> Identifiers = new List<int>();
+        public Dictionary<string, FunctionalFailure> FunctionalFailures = new Dictionary<string, FunctionalFailure>();
+        public bool Solve()
+        {
+            foreach (var FF in FunctionalFailures.Values)
+            {
+                FF.Solve();
+                CorrectiveCostsTotal += FF.CorrectiveCostsTotal;
+                PlannedCostsTotal += FF.PlannedCostsTotal;
+                InspectionCostsTotal += FF.InspectionCostsTotal;
+                EffectsCostsTotal += FF.EffectsCostsTotal;
+                FailureProfileTotal += FF.FailureProfileTotal;
+                CostsTotal += FF.CostsTotal;
+                correctiveCosts = Utilities.AddArrays(correctiveCosts, FF.correctiveCosts);
+                plannedCosts = Utilities.AddArrays(plannedCosts, FF.plannedCosts);
+                inspectionCosts = Utilities.AddArrays(inspectionCosts, FF.inspectionCosts);
+                effectsCosts = Utilities.AddArrays(effectsCosts, FF.effectsCosts);
+                FailureProfile = Utilities.AddArrays(FailureProfile, FF.FailureProfile);
+            }
+            return true;
+        }
+    }
+
+    public class FunctionalFailure : BaseHandler1
+    {
+        //Arrays to be returned by the solver
+        public double?[] correctiveCosts;
+        public double?[] plannedCosts;
+        public double?[] inspectionCosts;
+        public double?[] effectsCosts;
+        public double?[] FailureProfile;
+
+        //Totals to be returned by the solver
+        double correctiveCostsTotal;
+        double plannedCostsTotal;
+        double inspectionCostsTotal;
+        double effectsCostsTotal;
+        double failureProfileTotal;
+        double costsTotal;
+
+
+        public string FunctionName { get; set; }
+        public string FunctionDescription { get; set; }
+        public bool Disabled { get; set; } = true;
+
+        bool isCheckedFunctionalFailure;
+
+        public double CorrectiveCostsTotal
+        {
+            get
+            {
+                return correctiveCostsTotal;
+            }
+
+            set
+            {
+                correctiveCostsTotal = value;
+                NotifyPropertyChanged("CorrectiveCostsTotal");
+
+            }
+        }
+
+        public double PlannedCostsTotal
+        {
+            get
+            {
+                return plannedCostsTotal;
+            }
+
+            set
+            {
+                plannedCostsTotal = value;
+                NotifyPropertyChanged("PlannedCostsTotal");
+            }
+        }
+
+        public double InspectionCostsTotal
+        {
+            get
+            {
+                return inspectionCostsTotal;
+            }
+
+            set
+            {
+                inspectionCostsTotal = value;
+                NotifyPropertyChanged("InspectionCostsTotal");
+            }
+        }
+
+        public double EffectsCostsTotal
+        {
+            get
+            {
+                return effectsCostsTotal;
+            }
+
+            set
+            {
+                effectsCostsTotal = value;
+                NotifyPropertyChanged("EffectsCostsTotal");
+            }
+        }
+
+        public double FailureProfileTotal
+        {
+            get
+            {
+                return failureProfileTotal;
+            }
+
+            set
+            {
+                failureProfileTotal = value;
+                NotifyPropertyChanged("FailureProfileTotal");
+            }
+        }
+
+        public double CostsTotal
+        {
+            get
+            {
+                return costsTotal;
+            }
+
+            set
+            {
+                costsTotal = value;
+                NotifyPropertyChanged("CostsTotal");
+            }
+        }
+
+        public bool IsCheckedFunctionalFailure
+        {
+            get
+            {
+                return isCheckedFunctionalFailure;
+            }
+
+            set
+            {
+                isCheckedFunctionalFailure = value;
+                NotifyPropertyChanged("IsCheckedFunctionalFailure");
             }
         }
 
@@ -1132,7 +1435,7 @@ namespace WeibullSolverLibrary.Common_Code
 
         bool isCheckedInspectionTasks;
 
-        
+
 
         public bool IsCheckedPlannedTasks
         {
@@ -1161,7 +1464,7 @@ namespace WeibullSolverLibrary.Common_Code
                 NotifyPropertyChanged("IsCheckedInspectionTasks");
             }
         }
-        
+
 
         //public bool OfflineWork { get; set; } 
 
@@ -1252,7 +1555,7 @@ namespace WeibullSolverLibrary.Common_Code
                     foreach (var location in Mod.Locations.Values)
                     {
                         if (location.Identifiers.Contains(Action.Identifier) && Action.actiontype == 1) location.Disabled = false;
-                        foreach (var function in location.Functions.Values)
+                        foreach (var function in location.Locations.Values)
                         {
                             if (function.Identifiers.Contains(Action.Identifier) && Action.actiontype == 1) function.Disabled = false;
                             foreach (var ffailure in function.FunctionalFailures.Values)
